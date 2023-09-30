@@ -1,14 +1,10 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Navbar from '../components/navbar/Navbar';
-import Footer from '../components/footer/Footer';
+import { StickyNavbar } from './Layout';
 
 const Main = () => {
     return (
-        <div>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
+        <div className='mx-auto max-w-screen-2xl'>
+            <StickyNavbar></StickyNavbar>
         </div>
     );
 };
