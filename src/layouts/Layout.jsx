@@ -10,6 +10,8 @@ import {
 import {HiOutlineMenu,HiOutlineX,HiOutlineChevronDown} from 'react-icons/hi'
 import { Link, Outlet ,NavLink} from "react-router-dom";
 import Footer from "../components/footer/Footer";
+import { ProfileMenu } from "../components/profileMenu/Profilemenu";
+import Container from "../components/container/Container";
 
 
 export const StickyNavbar=() =>{
@@ -30,10 +32,10 @@ export const StickyNavbar=() =>{
         className="p-1 font-normal"
       >
         <NavLink 
-        to="/solutions"
+        to="/courses"
         className={({ isActive }) => isActive ? "text-cyan-700 flex justify-between md:justify-start  items-center space-x-2" : "flex justify-between md:justify-start items-center space-x-2"
     }>
-      <span>Solutions</span> 
+      <span>Courses</span> 
         </NavLink>
       </Typography>
       <Typography
@@ -106,8 +108,10 @@ export const StickyNavbar=() =>{
  
   return (
     <div className="">
+      
       <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
-        <div className="flex items-center justify-between text-blue-gray-900">
+        <>
+        <div className="max-w-5xl mx-auto flex items-center justify-between text-blue-gray-900">
           <Typography
             as={Link}
             href={`/`}
@@ -117,13 +121,10 @@ export const StickyNavbar=() =>{
           </Typography>
           <div className="mr-4 hidden lg:block">{navList}</div>
           <div className="">    
-            <Button
-              variant="gradient"
-              size="sm"
-              className="hidden lg:inline-block"
-            >
-              <span>Buy Now</span>
-            </Button>
+            
+            <div className="hidden md:block">
+            <ProfileMenu></ProfileMenu>
+            </div>
             <IconButton
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -140,12 +141,13 @@ export const StickyNavbar=() =>{
         </div>
         <MobileNav open={openNav}>
           {navList}
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
-            <span>Buy Now</span>
-          </Button>
+          <ProfileMenu></ProfileMenu>
+         
         </MobileNav>
+        </>
       </Navbar>
-      <div className="mx-auto max-w-screen-2xl py-12  px-4 md:px-8 min-h-screen">
+      
+      <div className="py-12   min-h-screen">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>
