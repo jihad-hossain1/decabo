@@ -22,13 +22,13 @@ export const SidebarWithLogo=() =>{
     );
   }, []);
   const navList = (
-    <ul className="">
+    <ul className="bg-cyan-50 py-6 h-full px-3 rounded">
       
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-normal lg:inline-block"
       >
         <NavLink to="/dashboard/addCourse"
         className={({ isActive }) => isActive ? "text-cyan-700 flex justify-between md:justify-start  items-center space-x-2" : "flex justify-between md:justify-start items-center space-x-2"
@@ -41,7 +41,7 @@ export const SidebarWithLogo=() =>{
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-normal lg:inline-block"
       >
         <NavLink to="/"
         className={({ isActive }) => isActive ? "text-cyan-700 flex justify-between md:justify-start  items-center space-x-2" : "flex justify-between md:justify-start items-center space-x-2"
@@ -67,7 +67,7 @@ export const SidebarWithLogo=() =>{
           >
             Docebo
           </Typography>
-          <div className="mr-4 hidden lg:block">{navList}</div>
+          <div className="mr-4 hidden lg:inline-block">{navList}</div>
           <IconButton
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -89,7 +89,7 @@ export const SidebarWithLogo=() =>{
         </>
       </div>
       
-      <div className="py-12   min-h-screen">
+      <div className="py-12 px-4  min-h-screen">
         <Outlet></Outlet>
       </div>
       

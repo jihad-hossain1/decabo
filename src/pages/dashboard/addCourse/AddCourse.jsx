@@ -50,16 +50,16 @@ const AddCourse = () => {
         <div className='max-w-[600px] mx-auto'>
             <form action="" onSubmit={handleSubmit}>
                 <div className='mb-4'>
-                <Input color="teal" name='title' label="Your Course Title" />
+                <Input required color="teal" name='title' label="Your Course Title" />
                 </div>
                 <div className='mb-4'>
-                <Input color="teal" name='category' label="Category" />
+                <Input required color="teal" name='category' label="Category" />
                 </div>
                 <div className='mb-4'>
-                <Textarea color="teal" name='details' label="Details" />
+                <Textarea color="teal" required name='details' label="Details" />
                 </div>
                 <div>
-                    <Input className='' label='Add Course' type='submit' color='teal' variant='outlined' />
+                    <Button className='' value={`Add Course`} label='Add Course' type='submit' color='teal' variant='outlined'> Add Course </Button>
                 </div>
             </form>
              

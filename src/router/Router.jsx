@@ -15,6 +15,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import AddCourse from "../pages/dashboard/addCourse/AddCourse";
 import Register from "../components/login/Register";
 import SingIn from "../components/login/SingIn";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
    {
@@ -62,7 +63,9 @@ export const router = createBrowserRouter([
    },
    {
     path: '/dashboard',
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+    </PrivateRoute>,
     children: [
         {
             path: '/dashboard',

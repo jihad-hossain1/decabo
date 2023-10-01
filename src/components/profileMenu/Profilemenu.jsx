@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 export const ProfileMenu = () => {
-  const {user} = useContext(AuthContext)
+  const {user,logOut} = useContext(AuthContext)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
@@ -75,7 +75,7 @@ export const ProfileMenu = () => {
               </MenuItem>
             </Link>
             <MenuItem
-              onClick={closeMenu}
+              onClick={logOut}
               className='flex items-center  gap-2 rounded'
             >
               <FaSignOutAlt></FaSignOutAlt> <span>Log Out</span>
@@ -91,7 +91,7 @@ export const ProfileMenu = () => {
               <TbHelpTriangleFilled></TbHelpTriangleFilled> <span>Help</span>
             </MenuItem>
            </Link>
-            <Link to={`/`}>
+            <Link to={`/signin`}>
               <MenuItem
                 onClick={closeMenu}
                 className='flex items-center  gap-2 rounded'
