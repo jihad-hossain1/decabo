@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Button,
   Menu,
@@ -12,9 +12,10 @@ import { HiOutlineChevronDown } from "react-icons/hi";
 import { AiFillSetting } from "react-icons/ai";
 import { TbHelpTriangleFilled } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 export const ProfileMenu = () => {
-  const user = null;
+  const {user} = useContext(AuthContext)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
@@ -34,7 +35,7 @@ export const ProfileMenu = () => {
             className='border border-gray-900 p-0.5'
             src={
               user
-                ? user.photoURL
+                ? user?.photoURL
                 : "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
             }
           />
@@ -63,6 +64,14 @@ export const ProfileMenu = () => {
                 className='flex items-center  gap-2 rounded'
               >
                 <AiFillSetting></AiFillSetting> <span>Edit Profile</span>
+              </MenuItem>
+            </Link>
+            <Link to={`/dashboard`}>
+              <MenuItem
+                onClick={closeMenu}
+                className='flex items-center  gap-2 rounded'
+              >
+                <AiFillSetting></AiFillSetting> <span>Dashboard</span>
               </MenuItem>
             </Link>
             <MenuItem

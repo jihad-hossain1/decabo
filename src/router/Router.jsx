@@ -10,6 +10,11 @@ import Customers from "../pages/customers/Customers";
 import About from "../pages/about/About";
 import Courses from "../pages/courses/Courses";
 import ErrorPage from "../ErrorPage";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Dashboard from "../pages/dashboard/Dashboard";
+import AddCourse from "../pages/dashboard/addCourse/AddCourse";
+import Register from "../components/login/Register";
+import SingIn from "../components/login/SingIn";
 
 export const router = createBrowserRouter([
    {
@@ -45,9 +50,29 @@ export const router = createBrowserRouter([
         {
             path: '/about',
             element: <About></About>,
-        },
+        },{
+            path: '/register',
+            element: <Register></Register>
+        },{
+            path: '/signin',
+            element: <SingIn></SingIn>
+        }
         
     ] 
+   },
+   {
+    path: '/dashboard',
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+        {
+            path: '/dashboard',
+            element: <Dashboard></Dashboard>
+        },
+        {
+            path: '/dashboard/addCourse',
+            element: <AddCourse></AddCourse>
+        }
+    ]
    }
    
 ]);
