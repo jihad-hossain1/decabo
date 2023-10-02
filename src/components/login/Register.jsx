@@ -6,19 +6,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IconButton } from "@material-tailwind/react";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
-// import { saveUser } from "../../auth/saveuser";
 const img_hosting_token = import.meta.env.VITE_IMGBB;
 
 const Register = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  // const { error, setError } = useState("");
+
   const from = location.state?.from?.pathname || "/";
   const { createUser, signInWithGoogle, updateUserProfile } =
     useContext(AuthContext);
-  // const handleToast = () => {
-  //   toast.success("successfull");
-  // };
 
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
@@ -47,7 +43,7 @@ const Register = () => {
         createUser(email, password)
           .then((result) => {
             updateUserProfile(name, imgUrl).then(() => {
-            //   saveUser(result.user);
+       
               toast.success("user account successfull");
             });
             navigate(from, { replace: true });
@@ -59,11 +55,9 @@ const Register = () => {
       });
   };
   const handleGoogleSignIn = () => {
-    // console.log("clck");
+   
     signInWithGoogle()
       .then((result) => {
-        // console.log(result.user);
-        // saveUser(result.user);
         toast.success("login success");
         navigate(from, { replace: true });
       })

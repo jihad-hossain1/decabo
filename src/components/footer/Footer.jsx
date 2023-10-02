@@ -24,8 +24,40 @@ const currentYear = new Date().getFullYear();
 
 const Footer = () => {
     return (
+      // <div className='grid md:grid-cols-2 lg:grid-cols-4'>
+      //   <ul>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //   </ul>
+      //   <ul>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //   </ul>
+      //   <ul>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //   </ul>
+      //   <ul>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //   </ul>
+      //   <ul>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //     <li>Footer</li>
+      //   </ul>
+      // </div>
         
-            <footer className="relative w-full bg-blue-gray-100">
+    <footer className=" w-full bg-blue-gray-100">
       <div className="mx-auto w-full max-w-7xl px-8">
         <div className="mx-auto grid w-full grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-4">
           {SITEMAP.map(({ title, links }, key) => (

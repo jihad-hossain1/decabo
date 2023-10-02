@@ -2,8 +2,8 @@ import React from 'react';
 
 const Resource = () => {
     return (
-        <div>
-            Resource here ..
+        <div className='h-screen'>
+            <h4 className='text-center text-4xl mt-20'> Ops.. some thing error</h4>
         </div>
     );
 };

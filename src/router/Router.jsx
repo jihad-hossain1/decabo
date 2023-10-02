@@ -16,6 +16,11 @@ import AddCourse from "../pages/dashboard/addCourse/AddCourse";
 import Register from "../components/login/Register";
 import SingIn from "../components/login/SingIn";
 import PrivateRoute from "./PrivateRoute";
+import ManageCourses from "../pages/dashboard/manageCourses/ManageCourses";
+import { useCourse } from "../hooks/useCourse";
+import UpdateCourse from "../pages/dashboard/manageCourses/UpdateCourse";
+import CourseDetails from "../pages/courses/CourseDetails";
+import { getCourse } from "../api/getCourse";
 
 export const router = createBrowserRouter([
    {
@@ -57,7 +62,12 @@ export const router = createBrowserRouter([
         },{
             path: '/signin',
             element: <SingIn></SingIn>
-        }
+        },
+        {
+            path: "course/:id",
+            element: <CourseDetails></CourseDetails>,
+            loader: ({ params }) => getCourse(params.id),
+          },
         
     ] 
    },
@@ -74,7 +84,16 @@ export const router = createBrowserRouter([
         {
             path: '/dashboard/addCourse',
             element: <AddCourse></AddCourse>
-        }
+        },
+        {
+            path: '/dashboard/manageCourses',
+            element: <ManageCourses></ManageCourses>
+        },
+        {
+            path: '/dashboard/updateCourse/:id',
+            element: <UpdateCourse></UpdateCourse>,
+            loader: ({ params }) =>  fetch(`${import.meta.env.VITE_BASE_URL}/course/${params.id}`),
+        },
     ]
    }
    
