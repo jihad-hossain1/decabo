@@ -2,19 +2,20 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-export const useCourse = () => {
+export const useComment = () => {
     const {
-        data: courses = [],
+        data: comments = [],
         isLoading: loading,
         refetch,
     } = useQuery({
-        queryKey: ["courses"],
+        queryKey: ["comments"],
         queryFn: async () => {
-            const res = await fetch(`${import.meta.env.VITE_BASE_URL}/course`);
+            const res = await fetch(`${import.meta.env.VITE_BASE_URL}/comments`);
             return res.json();
         },
     });
 
-    return [courses,refetch,loading];
+    return [comments,refetch,loading];
 };
 
+ 

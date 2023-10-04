@@ -1,7 +1,7 @@
 import React from "react";
 import { useCourse } from "../../../hooks/useCourse";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { PencilIcon, TrashIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+import { UserPlusIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   CardHeader,
@@ -9,14 +9,11 @@ import {
   Typography,
   Button,
   CardBody,
-  Chip,
   CardFooter,
   Tabs,
   TabsHeader,
   Tab,
-  Avatar,
-  IconButton,
-  Tooltip,
+  
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
