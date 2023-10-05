@@ -141,18 +141,22 @@ export const SidebarWithLogo = () => {
                   <ShoppingBagIcon className='h-5 w-5' />
                 </ListItemPrefix>
                 <Typography color='blue-gray' className='mr-auto font-normal'>
-                  Products
+                  Enrollment
                 </Typography>
               </AccordionHeader>
             </ListItem>
             <AccordionBody className='py-1'>
               <List className='p-0'>
+                <NavLink to={`/dashboard/enroll`} className={({ isActive }) =>
+                    isActive ? "text-cyan-700" : ""
+                  }>
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
                   </ListItemPrefix>
-                  Orders
+                  Enroll
                 </ListItem>
+                </NavLink>
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className='h-3 w-5' />

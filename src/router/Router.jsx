@@ -21,6 +21,7 @@ import { useCourse } from "../hooks/useCourse";
 import UpdateCourse from "../pages/dashboard/manageCourses/UpdateCourse";
 import CourseDetails from "../pages/courses/CourseDetails";
 import { getCourse } from "../api/getCourse";
+import Enroll from "../pages/dashboard/enroll/Enroll";
 
 export const router = createBrowserRouter([
    {
@@ -93,6 +94,10 @@ export const router = createBrowserRouter([
             path: '/dashboard/updateCourse/:id',
             element: <UpdateCourse></UpdateCourse>,
             loader: ({ params }) =>  fetch(`${import.meta.env.VITE_BASE_URL}/course/${params.id}`),
+        },
+        {
+            path: '/dashboard/enroll',
+            element: <Enroll></Enroll>
         },
     ]
    }

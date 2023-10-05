@@ -7,9 +7,11 @@ import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import { useComment } from "../../hooks/useComment";
 import SingleComment from "./SingleComment";
+import { useEnroll } from "../../hooks/useEnroll";
 
 const CourseDetails = () => {
   const { user } = useContext(AuthContext);
+  const [enrolls,isEnrollRefetch,isEnrollLoading] =useEnroll()
   const course = useLoaderData();
   const [showMoreText, setShowMoreText] = useState(false);
   const [value, setValue] = useState(0);
@@ -67,7 +69,33 @@ const CourseDetails = () => {
   };
 
  
-
+const handleEnrollCart=async (enrollCourse)=>{
+  if(!user){
+    return toast.error('login first')
+  }else{
+    const enrollVerify = enrolls.find(({_id})=> _id == course._id)
+    if(enrollVerify){
+      return toast.error('already Enrolled in this course')
+    }else{
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/enroll`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(enrollCourse),
+        }
+      );
+      const data = await res.json();
+      if(data){
+        toast.success('check your enroll course option')
+        isEnrollRefetch()
+      }
+      console.log(data);
+    }
+  }
+}
   const comment = comments.filter(item=> item.commentID == course?._id)
   // console.log(comment)
   return (
@@ -100,9 +128,14 @@ const CourseDetails = () => {
             <p className='text-blue-gray-50 border-b inline-block mt-2'>
               {course?.categories}
             </p>
+            <div className="flex justify-between items-center">
             <p className='text-blue-gray-50 text-xl font-bold mt-3'>
               {course?.coursePrice}$
             </p>
+            <div>
+              <button onClick={()=>handleEnrollCart(course)} className="text-white px-3 py-1 rounded-sm bg-cyan-700 hover:bg-cyan-900 shadow-sm hover:drop-shadow-sm">Enroll Now</button>
+            </div>
+            </div>
           </div>
         </div>
       </div>
