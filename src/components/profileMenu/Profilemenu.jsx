@@ -16,8 +16,8 @@ import { AuthContext } from "../../provider/AuthProvider";
 
 export const ProfileMenu = () => {
   const {user,logOut} = useContext(AuthContext)
+  //navigation state
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const closeMenu = () => setIsMenuOpen(false);
 
   return (

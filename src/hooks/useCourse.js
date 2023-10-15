@@ -7,6 +7,8 @@ export const useCourse = () => {
         data: courses = [],
         isLoading: loading,
         refetch,
+        isError,
+        error
     } = useQuery({
         queryKey: ["courses"],
         queryFn: async () => {
@@ -15,6 +17,7 @@ export const useCourse = () => {
         },
     });
 
-    return [courses,refetch,loading];
+    return [courses,refetch,loading,isError,
+        error];
 };
 
