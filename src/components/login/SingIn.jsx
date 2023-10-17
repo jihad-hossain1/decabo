@@ -88,7 +88,7 @@ const SingIn = () => {
           >
             <LiaGofore className="text-3xl" />
           </IconButton>
-          <IconButton className="rounded bg-[#5c4bf7] hover:shadow-[#4735ea]/20 focus:shadow-[#4735ea]/20 active:shadow-[#4735ea]/10">
+          <IconButton className="rounded bg-[#5168f0] hover:shadow-[#4735ea]/20 focus:shadow-[#4735ea]/20 active:shadow-[#4735ea]/10">
             <LiaFacebook className="text-3xl" />
           </IconButton>
 

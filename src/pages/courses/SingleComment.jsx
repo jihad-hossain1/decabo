@@ -91,7 +91,7 @@ const SingleComment = ({ item, refetch }) => {
   return (
     <>
       <Toaster />
-      <div className="max-w-2xl px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+      <div className="max-w-2xl px-8 py-4 bg-teal-50/10 border  shadow-teal-200/40 border-gray-300 rounded-lg shadow drop-shadow dark:bg-gray-800">
         <div className="flex items-center justify-between">
           <span className="text-sm font-light text-blue-gray-600 dark:text-gray-400 ">
             {timeDate?.commentDate || (

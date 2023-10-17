@@ -1,7 +1,7 @@
 // import { Button } from 'antd';
 import { Button, Input, Textarea } from '@material-tailwind/react';
 import React from 'react';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useLoaderData, useSearchParams } from 'react-router-dom';
 
 const UpdateCourse = () => {
@@ -17,6 +17,7 @@ const UpdateCourse = () => {
         const instructorInformation = form.instructorInformation.value;
         const instructorTitle = form.instructorTitle.value;
         const instructorRating = form.instructorRating.value;
+        const courseDetailsHead = form.courseDetailsHead.value;
         const coursePrice = form.coursePrice.value;
         const courseRequirement = form.courseRequirement.value;
         // console.log(updateinfo)
@@ -29,7 +30,8 @@ const UpdateCourse = () => {
             sylebus,
             instructorInformation,
             instructorTitle,
-            courseRequirement,
+          courseRequirement,
+            courseDetailsHead
           };
         const res = await fetch(
           `${import.meta.env.VITE_BASE_URL}/course/${course?._id}`,
@@ -53,7 +55,8 @@ const UpdateCourse = () => {
       };
     console.log(course)
     return (
-        <div className='md:w-[1280px] mx-auto  my-10 px-2 pb-6'>
+      <div className='md:w-[1280px] mx-auto  my-10 px-2 pb-6'>
+        <Toaster />
             <div className='md:max-w-[600px] mx-auto px-2'>
             <form action=''  onSubmit={handleUpdate} className='px-4'>
           <div className=''>
@@ -162,6 +165,18 @@ const UpdateCourse = () => {
                   type='text'
                   label='Course Details information'
                   defaultValue={course?.details}
+                />
+              </div>
+              <div className='mb-4'>
+                <Textarea
+                  color='teal'
+                  className='w-full'
+                  itemType='text'
+                  required
+                  name='courseDetailsHead'
+                  type='text'
+                  label='Course Details Head'
+                  defaultValue={course?.courseDetailsHead}
                 />
               </div>
               <div className='mb-4'>
