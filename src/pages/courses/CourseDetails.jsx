@@ -2,18 +2,21 @@ import React, { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { BreadCumb } from "../../components/breadcrumbs/BreadCumb";
 import { Rate } from "antd";
-import { Button, Input, Textarea } from "@material-tailwind/react";
+import { Button, IconButton, Input, Textarea } from "@material-tailwind/react";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import { useComment } from "../../hooks/useComment";
 import SingleComment from "./SingleComment";
 // import { useEnroll } from "../../hooks/useEnroll";
 import useCarts from "../../hooks/useCarts";
+import useFavorite from "../../hooks/useFavorite";
+import { MdFavorite } from "react-icons/md";
 
 const CourseDetails = () => {
   const { user } = useContext(AuthContext);
-  const [cart, isRefetch, isError, isLoading, error] = useCarts();
+  const [cart, isRefetch] = useCarts();
   // const [enrolls,isEnrollRefetch,isEnrollLoading] =useEnroll()
+  const [favorite, isFavFetch] = useFavorite();
   const course = useLoaderData();
   const [showMoreText, setShowMoreText] = useState(false);
   const [value, setValue] = useState(0);
@@ -102,8 +105,45 @@ const CourseDetails = () => {
       }
     }
   };
+  const handleFavCart = async (favCourse) => {
+    if (!user) {
+      return toast.error("login first");
+    } else {
+      const favVerify = favorite?.find(
+        ({ courseId }) => courseId == favCourse._id
+      );
+      if (favVerify) {
+        return toast.error("already added in whitelist ");
+      } else {
+        const info = {
+          course: favCourse,
+          email: user?.email,
+          userName: user?.displayName,
+          photo: user?.photoURL,
+          courseId: favCourse?._id,
+        };
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/favorite`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(info),
+        });
+        const data = await res.json();
+        if (data) {
+          isFavFetch();
+          toast.success("check your whitelist");
+        }
+        console.log(data);
+      }
+    }
+  };
   const comment = comments.filter((item) => item.commentID == course?._id);
   // console.log(comment)
+  const favBgColorSet = favorite?.find(
+    ({ courseId }) => courseId == course?._id
+  );
+  console.log(favBgColorSet);
   return (
     <>
       <Toaster />
@@ -141,7 +181,20 @@ const CourseDetails = () => {
               <p className="text-blue-gray-50 text-xl font-bold mt-3">
                 {course?.coursePrice}$
               </p>
-              <div>
+              <div className="space-x-2">
+                <IconButton
+                  title={
+                    !favBgColorSet ? `Add To favorite` : `Already whitelist`
+                  }
+                  onClick={() => handleFavCart(course)}
+                  className={
+                    favBgColorSet
+                      ? "rounded bg-transparent text-[#f9a83b]"
+                      : "rounded bg-transparent text-teal-100 "
+                  }
+                >
+                  <MdFavorite className="text-2xl" />
+                </IconButton>
                 <Button
                   color="teal"
                   variant="gradient"

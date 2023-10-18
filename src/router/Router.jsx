@@ -24,103 +24,110 @@ import CheckoutCart from "../pages/dashboard/carts/checkoutCart/CheckoutCart";
 import PaymentCartLayout from "../layouts/payment/PaymentCartLayout";
 import EnrolledCourse from "../pages/enrolledCourse/EnrolledCourse";
 import EnrolledMainDashboard from "../pages/enrolledCourse/EnrolledMainDashboard/EnrolledMainDashboard";
+import FavoritePage from "../pages/FavoritePage/FavoritePage";
 
 export const router = createBrowserRouter([
-   {
-    path: '/',
+  {
+    path: "/",
     element: <Main></Main>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
-        {
-            path: '/',
-            element: <HomePage></HomePage>,
-
-        },
-        {
-            path: '/courses',
-            element: <Courses></Courses>,
-        },
-        {
-            path: '/products',
-            element: <Products></Products>,
-        },
-        {
-            path: '/pricing',
-            element: <Pricing></Pricing>,
-        },
-        {
-            path: '/customers',
-            element: <Customers></Customers>,
-        },
-        {
-            path: '/resources',
-            element: <Resource></Resource>,
-        },
-        {
-            path: '/checkout',
-            element: <CheckoutCart></CheckoutCart>,
-        },
-        {
-            path: '/about',
-            element: <About></About>,
-        },{
-            path: '/register',
-            element: <Register></Register>
-        },{
-            path: '/signin',
-            element: <SingIn></SingIn>
-        },
-        {
-            path: "course/:id",
-            element: <CourseDetails></CourseDetails>,
-            loader: ({ params }) => getCourse(params.id),
-          },
-        
-    ] 
-   },
-   {
-    path: '/dashboard',
-    element: <PrivateRoute>
+      {
+        path: "/",
+        element: <HomePage></HomePage>,
+      },
+      {
+        path: "/courses",
+        element: <Courses></Courses>,
+      },
+      {
+        path: "/products",
+        element: <Products></Products>,
+      },
+      {
+        path: "/pricing",
+        element: <Pricing></Pricing>,
+      },
+      {
+        path: "/customers",
+        element: <Customers></Customers>,
+      },
+      {
+        path: "/resources",
+        element: <Resource></Resource>,
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutCart></CheckoutCart>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/signin",
+        element: <SingIn></SingIn>,
+      },
+      {
+        path: "course/:id",
+        element: <CourseDetails></CourseDetails>,
+        loader: ({ params }) => getCourse(params.id),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
         <DashboardLayout></DashboardLayout>
-    </PrivateRoute>,
+      </PrivateRoute>
+    ),
     children: [
-        {
-            path: '/dashboard',
-            element: <Dashboard></Dashboard>
-        },
-        {
-            path: '/dashboard/addCourse',
-            element: <AddCourse></AddCourse>
-        },
-        {
-            path: '/dashboard/manageCourses',
-            element: <ManageCourses></ManageCourses>
-        },
-        {
-            path: '/dashboard/updateCourse/:id',
-            element: <UpdateCourse></UpdateCourse>,
-            loader: ({ params }) =>  fetch(`${import.meta.env.VITE_BASE_URL}/course/${params.id}`),
-        },
-        {
-            path: '/dashboard/enroll',
-            element: <Enroll></Enroll>
-        },
-    ]
-   },
-   {
-    path: '/paymentCheckout',
+      {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+      },
+      {
+        path: "/dashboard/addCourse",
+        element: <AddCourse></AddCourse>,
+      },
+      {
+        path: "/dashboard/manageCourses",
+        element: <ManageCourses></ManageCourses>,
+      },
+      {
+        path: "/dashboard/updateCourse/:id",
+        element: <UpdateCourse></UpdateCourse>,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_BASE_URL}/course/${params.id}`),
+      },
+      {
+        path: "/dashboard/enroll",
+        element: <Enroll></Enroll>,
+      },
+    ],
+  },
+  {
+    path: "/paymentCheckout",
     element: <PaymentCartLayout />,
-    
-   },{
-    path: '/my_enrolled_course',
-    element: <EnrolledCourse />,
+  },
+  {
+    path: "/my_enrolled_course",
+    element: <EnrolledMainDashboard />,
     children: [
-        {
-            path: '/my_enrolled_course',
-            element: <EnrolledMainDashboard></EnrolledMainDashboard>
-        }
-    ]
-   }
-   
+      {
+        path: "/my_enrolled_course/enroll_course",
+        element: <EnrolledCourse></EnrolledCourse>,
+      },
+      {
+        path: "/my_enrolled_course/favorites",
+        element: <FavoritePage></FavoritePage>,
+      },
+    ],
+  },
 ]);
 

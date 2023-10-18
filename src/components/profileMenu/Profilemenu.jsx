@@ -21,18 +21,18 @@ export const ProfileMenu = () => {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <Menu open={isMenuOpen} handler={setIsMenuOpen} placement='bottom-end'>
+    <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
         <Button
-          variant='text'
-          color='blue-gray'
-          className='flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto'
+          variant="text"
+          color="blue-gray"
+          className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
         >
           <Avatar
-            variant='circular'
-            size='sm'
-            alt='tania andrew'
-            className='border border-gray-900 p-0.5'
+            variant="circular"
+            size="sm"
+            alt="tania andrew"
+            className="border border-gray-900 p-0.5"
             src={
               user
                 ? user?.photoURL
@@ -47,54 +47,54 @@ export const ProfileMenu = () => {
           />
         </Button>
       </MenuHandler>
-      <MenuList className='p-1'>
+      <MenuList className="p-1">
         {user ? (
           <>
             <Link to={`/`}>
               <MenuItem
                 onClick={closeMenu}
-                className='flex items-center  gap-2 rounded'
+                className="flex items-center  gap-2 rounded"
               >
                 <FaUserGraduate></FaUserGraduate> <span>Profile</span>
               </MenuItem>
             </Link>
-            <Link to={`/`}>
+            <Link to={`/my_enrolled_course`}>
               <MenuItem
                 onClick={closeMenu}
-                className='flex items-center  gap-2 rounded'
+                className="flex items-center  gap-2 rounded"
               >
-                <AiFillSetting></AiFillSetting> <span>Edit Profile</span>
+                <AiFillSetting></AiFillSetting> <span>My Course</span>
               </MenuItem>
             </Link>
             <Link to={`/dashboard`}>
               <MenuItem
                 onClick={closeMenu}
-                className='flex items-center  gap-2 rounded'
+                className="flex items-center  gap-2 rounded"
               >
                 <AiFillSetting></AiFillSetting> <span>Dashboard</span>
               </MenuItem>
             </Link>
             <MenuItem
               onClick={logOut}
-              className='flex items-center  gap-2 rounded'
+              className="flex items-center  gap-2 rounded"
             >
               <FaSignOutAlt></FaSignOutAlt> <span>Log Out</span>
             </MenuItem>
           </>
         ) : (
           <>
-           <Link>
-           <MenuItem
-              onClick={closeMenu}
-              className='flex items-center  gap-2 rounded'
-            >
-              <TbHelpTriangleFilled></TbHelpTriangleFilled> <span>Help</span>
-            </MenuItem>
-           </Link>
+            <Link>
+              <MenuItem
+                onClick={closeMenu}
+                className="flex items-center  gap-2 rounded"
+              >
+                <TbHelpTriangleFilled></TbHelpTriangleFilled> <span>Help</span>
+              </MenuItem>
+            </Link>
             <Link to={`/signin`}>
               <MenuItem
                 onClick={closeMenu}
-                className='flex items-center  gap-2 rounded'
+                className="flex items-center  gap-2 rounded"
               >
                 <FaSignInAlt></FaSignInAlt> <span>Log In</span>
               </MenuItem>

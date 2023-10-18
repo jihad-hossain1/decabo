@@ -16,7 +16,7 @@ import { AuthContext } from "../../../../provider/AuthProvider";
 
 const HeaderCarts = () => {
   const { user } = useContext(AuthContext);
-  const [cart, isRefetch, isError, isLoading, error] = useCarts();
+  const [cart] = useCarts();
 
   const [openMenu, setOpenMenu] = useState(false);
   return (

@@ -71,10 +71,14 @@ const CheckoutForm = ({ price,cart, isRefetch}) => {
       // console.log("[paymentIntent]", paymentIntent);
       if (paymentIntent.status === "succeeded") {
         // toast.success('')
+        const filterCart = cart?.map(({ course }) => course);
+        console.log(cart);
         const paymentInfo = {
-          ...cart,
+          courses: filterCart,
           transactionId: paymentIntent.id,
           date: new Date(),
+          email: user?.email,
+          name: user?.displayName,
         };
         axios
           .post(`${import.meta.env.VITE_BASE_URL}/coursepayinfo`, paymentInfo)
@@ -89,8 +93,8 @@ const CheckoutForm = ({ price,cart, isRefetch}) => {
                 showConfirmButton: false,
                 timer: 1500,
               });
-              toast.success('your payment success check on enrolled course')
-              navigate('/my_enrolled_course')
+              toast.success("your payment success check on enrolled course");
+              navigate("/my_enrolled_course/enroll_course");
               // const findCartEmailForDelete = cart?.filter(({email})=>email)
               // console.log(findCartEmailForDelete.email);
               // fetch(

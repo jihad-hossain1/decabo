@@ -27,7 +27,7 @@ const Notification = () => {
             <AiOutlineBell className="text-2xl hover:text-teal-600 " />
           </button>
         </MenuHandler>
-        <MenuList className="max-w-[36rem] p-4 min-w-[100px]  overflow-visible lg:grid">
+        <MenuList className="mt-7 max-w-[36rem] p-4 min-w-[100px]  overflow-visible lg:grid">
           <ul className="flex w-full flex-col gap-1">
             {userNotify.notification ? (
               menuItems.map(({ title }) => (

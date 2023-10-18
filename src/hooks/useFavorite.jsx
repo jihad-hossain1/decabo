@@ -4,27 +4,26 @@ import { useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../provider/AuthProvider";
 
-const useEnrolled = () => {
+const useFavorite = () => {
   const { user, loading } = useContext(AuthContext);
   const {
-    refetch: isEnrollRefetch,
-    data: enrolled = [],
-    isError,
-    isLoading,
+    refetch: isFavFetch,
+    data: favorite = [],
+    isError: isFavError,
+    isLoading: isFavLoading,
     error,
   } = useQuery({
-    queryKey: ["enrolleds", user?.email],
+    queryKey: ["favorites", user?.email],
     enabled: !loading,
     queryFn: async () => {
       const res = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/coursepayinfo?email=${user?.email}`
+        `${import.meta.env.VITE_BASE_URL}/favorite?email=${user?.email}`
       );
-      console.log(res.data);
       return res.data;
     },
   });
 
-  return [enrolled, isEnrollRefetch, isError, isLoading, error];
+  return [favorite, isFavFetch, isFavError, isFavLoading, error];
 };
 
-export default useEnrolled;
+export default useFavorite;
