@@ -54,8 +54,8 @@ const PaymentCartLayout = () => {
                 Secured connections <BiSolidLockAlt className="ml-2 text-xl" />{" "}
               </p>
             </div>
-            <div className="min-h-[300px] w-full border border-blue-gray-100 ">
-              
+            <div className="min-h-[300px] w-full border border-blue-gray-100 flex justify-center">
+              <img className="w-96 object-cover p-10" src="https://i.ibb.co/z5YJD4f/3d-casual-life-online-shopping-monitor.png" alt="" />
             </div>
             <div className="mt-6">
               <h4 className="text-2xl font-semibold">Order details</h4>

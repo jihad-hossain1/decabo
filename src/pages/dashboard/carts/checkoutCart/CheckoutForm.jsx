@@ -1,9 +1,12 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React from "react";
 import { useContext } from "react";
+import { Alert, Space } from 'antd';
 import { useState } from "react";
 // import { AuthContext } from "../../../provider/AuthProvider";
 import { useEffect } from "react";
+import {MdPayment} from 'react-icons/md'
+import {FaGooglePay,FaCcVisa,FaCcPaypal} from 'react-icons/fa'
 import axios from "axios";
 import Swal from "sweetalert2";
 import toast, { Toaster } from 'react-hot-toast';
@@ -116,6 +119,13 @@ const CheckoutForm = ({ price,cart, isRefetch}) => {
   return (
     <div>
       <Toaster />
+      
+      <div className="flex space-x-4 items-center justify-evenly border-b border-blue-gray-100 pb-2">
+      <MdPayment className="text-3xl text-indigo-700" />
+      <FaCcPaypal className="text-3xl " />
+      <FaCcVisa className="text-3xl text-yellow-900" />
+      <FaGooglePay className="text-3xl text-teal-600" />
+      </div>
       <form onSubmit={handleSubmit} className="mt-7">
         <CardElement
           options={{
@@ -166,6 +176,9 @@ const CheckoutForm = ({ price,cart, isRefetch}) => {
           
         </div>
       </form>
+      <div className="mt-2">
+      <Alert message="Test-Payment 5555 5555 5555 4444 " type="info" showIcon closable />
+      </div>
       {cardError && (
         <p className="text-rose-500 py-2 text-center">{cardError}</p>
       )}

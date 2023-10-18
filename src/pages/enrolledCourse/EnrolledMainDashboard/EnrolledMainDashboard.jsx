@@ -1,9 +1,16 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 const EnrolledMainDashboard = () => {
     return (
         <div>
-            dashhome
+           <nav>
+            nav here
+           </nav>
+           <Outlet>
+
+           </Outlet>
+        
         </div>
     );
 };
