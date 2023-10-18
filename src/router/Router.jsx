@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
 import HomePage from "../pages/home/HomePage";
 import Resource from "../pages/resource/Resource";
-// import Solutions from "../pages/courses/Courses";
 import Products from "../pages/products/Products";
 import Pricing from "../pages/pricing/Pricing";
 import Customers from "../pages/customers/Customers";
@@ -17,11 +16,14 @@ import Register from "../components/login/Register";
 import SingIn from "../components/login/SingIn";
 import PrivateRoute from "./PrivateRoute";
 import ManageCourses from "../pages/dashboard/manageCourses/ManageCourses";
-import { useCourse } from "../hooks/useCourse";
 import UpdateCourse from "../pages/dashboard/manageCourses/UpdateCourse";
 import CourseDetails from "../pages/courses/CourseDetails";
 import { getCourse } from "../api/getCourse";
 import Enroll from "../pages/dashboard/enroll/Enroll";
+import CheckoutCart from "../pages/dashboard/carts/checkoutCart/CheckoutCart";
+import PaymentCartLayout from "../layouts/payment/PaymentCartLayout";
+import EnrolledCourse from "../pages/enrolledCourse/EnrolledCourse";
+import EnrolledMainDashboard from "../pages/enrolledCourse/EnrolledMainDashboard/EnrolledMainDashboard";
 
 export const router = createBrowserRouter([
    {
@@ -53,6 +55,10 @@ export const router = createBrowserRouter([
         {
             path: '/resources',
             element: <Resource></Resource>,
+        },
+        {
+            path: '/checkout',
+            element: <CheckoutCart></CheckoutCart>,
         },
         {
             path: '/about',
@@ -99,6 +105,20 @@ export const router = createBrowserRouter([
             path: '/dashboard/enroll',
             element: <Enroll></Enroll>
         },
+    ]
+   },
+   {
+    path: '/paymentCheckout',
+    element: <PaymentCartLayout />,
+    
+   },{
+    path: '/my_enrolled_course',
+    element: <EnrolledCourse />,
+    children: [
+        {
+            path: '/my_enrolled_course',
+            element: <EnrolledMainDashboard></EnrolledMainDashboard>
+        }
     ]
    }
    

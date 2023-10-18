@@ -78,7 +78,7 @@ const HeaderCarts = () => {
             )}
             {cart?.length > 0 && (
               <Link
-                to={"/dashboard/carts"}
+                to={"/checkout"}
                 className="w-full py-4 px-2 text-blue-gray-50 bg-gray-900 rounded-sm hover:bg-blue-gray-800 text-center font-semibold"
               >
                 Go To Cart
