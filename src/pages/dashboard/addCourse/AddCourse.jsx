@@ -84,183 +84,195 @@ const AddCourse = () => {
     }
   };
   return (
-    <div className='md:w-[1280px] mx-auto  my-10 px-2 pb-6'>
+    <div className="md:w-[1280px] mx-auto  my-10 px-2 pb-6">
       <Toaster></Toaster>
-      <div className='md:max-w-[600px] mx-auto px-2'>
-        <h4 className='text-2xl font-semibold text-center text-blue-gray-700 mb-5'>
+      <div className="md:max-w-[600px] mx-auto px-2">
+        <h4 className="text-2xl font-semibold text-center text-blue-gray-700 mb-5">
           Add Your Course
         </h4>
-        <form action='' onSubmit={handleSubmit}>
-          <div className='mb-4'>
+        <form action="" onSubmit={handleSubmit}>
+          <div className="mb-4">
             <Input
               required
-              type='text'
-              className='w-full'
-              color='teal'
-              name='title'
-              label='Your Course Title'
+              type="text"
+              className="w-full"
+              color="teal"
+              name="title"
+              label="Your Course Title"
             />
           </div>
-          <div className='grid md:grid-cols-2 gap-1'>
-            <div className='mb-4'>
+          <div className="grid md:grid-cols-2 gap-1">
+            <div className="mb-4">
               <Input
                 required
-                type='text'
-                className='w-full'
-                color='teal'
-                name='instructorName'
-                label='Instructor Name'
+                type="text"
+                className="w-full"
+                color="teal"
+                name="instructorName"
+                label="Instructor Name"
               />
             </div>
-            <div className='mb-4'>
+            <div className="mb-4">
               <Input
                 required
-                type='text'
-                className='w-full'
-                color='teal'
-                name='coursePrice'
-                label='course Price'
+                type="text"
+                className="w-full"
+                color="teal"
+                name="coursePrice"
+                label="course Price"
               />
             </div>
-            <div className='mb-4'>
+            <div className="mb-4">
               <Input
                 required
-                type='text'
-                className='w-full'
-                color='teal'
-                name='instructorRating'
-                label='Instructor Rating'
+                type="text"
+                className="w-full"
+                color="teal"
+                name="instructorRating"
+                label="Instructor Rating"
               />
             </div>
-            <div className='mb-4'>
+            <div className="mb-4">
               <Input
                 required
-                type='text'
-                className='w-full'
-                color='teal'
-                name='instructorTitle'
-                label='Instructor Lead Title'
+                type="text"
+                className="w-full"
+                color="teal"
+                name="instructorTitle"
+                label="Instructor Lead Title"
               />
             </div>
           </div>
-          <div className='mb-4'>
+          <div className="mb-4">
             <Input
               required
-              type='text'
+              type="text"
               defaultValue={user?.email}
-              className='w-full'
-              color='teal'
-              name='instructorEmail'
-              label='Instructor Email'
+              className="w-full"
+              color="teal"
+              name="instructorEmail"
+              label="Instructor Email"
             />
           </div>
 
-          <div className='mb-4'>
-            <label htmlFor='select' className='text-blue-gray-500 text-sm'>
+          <div className="mb-4">
+            <label htmlFor="select" className="text-blue-gray-500 text-sm">
               Select category
             </label>
             <select
               required
-              placeholder='select category'
+              placeholder="select category"
               value={isCategory}
               onChange={(e) => setIsCategory(e.target.value)}
-              name='select'
-              className='focus:outline-none rounded-md border-blue-gray-200 w-full border p-2 outline-none'
+              name="select"
+              className="focus:outline-none rounded-md border-blue-gray-200 w-full border p-2 outline-none"
             >
               <option
-                value='react'
-                className='hover:text-blue-gray-700 text-blue-gray-500 '
+                value="drawing"
+                className="hover:text-blue-gray-700 text-blue-gray-500 "
               >
-                React
+                drawing
               </option>
               <option
-                value='web-Developer'
-                className='hover:text-blue-gray-700 text-blue-gray-500 '
+                value="web-Developer"
+                className="hover:text-blue-gray-700 text-blue-gray-500 "
               >
                 web-Developer
               </option>
               <option
-                value='full-stack'
-                className='hover:text-blue-gray-700 text-blue-gray-500 '
+                value="graphics"
+                className="hover:text-blue-gray-700 text-blue-gray-500 "
               >
-                full-stack
+                graphics
               </option>
               <option
-                value='svelte'
-                className='hover:text-blue-gray-700 text-blue-gray-500 '
+                value="svelte"
+                className="hover:text-blue-gray-700 text-blue-gray-500 "
               >
                 Svelte
               </option>
               <option
-                value='javascript'
-                className='hover:text-blue-gray-700 text-blue-gray-500 '
+                value="javascript"
+                className="hover:text-blue-gray-700 text-blue-gray-500 "
               >
                 JavaScript
               </option>
+              <option
+                value="dataScience"
+                className="hover:text-blue-gray-700 text-blue-gray-500 "
+              >
+                dataScience
+              </option>
+              <option
+                value="databseAWS"
+                className="hover:text-blue-gray-700 text-blue-gray-500 "
+              >
+                databseAWS
+              </option>
             </select>
           </div>
-          <div className='mb-4'>
+          <div className="mb-4">
             <Textarea
-              color='teal'
-              className='w-full'
-              itemType='text'
+              color="teal"
+              className="w-full"
+              itemType="text"
               required
-              name='sylebus'
-              type='text'
-              label='Sylebus Information'
+              name="sylebus"
+              type="text"
+              label="Sylebus Information"
             />
           </div>
-          <div className='mb-4'>
+          <div className="mb-4">
             <Textarea
-              color='teal'
-              className='w-full'
-              itemType='text'
+              color="teal"
+              className="w-full"
+              itemType="text"
               required
-              name='courseRequirement'
-              type='text'
-              label='Course Requirement'
+              name="courseRequirement"
+              type="text"
+              label="Course Requirement"
             />
           </div>
-          <div className='mb-4'>
+          <div className="mb-4">
             <Textarea
-              color='teal'
-              className='w-full'
-              itemType='text'
+              color="teal"
+              className="w-full"
+              itemType="text"
               required
-              name='details'
-              type='text'
-              label='Course Details information'
+              name="details"
+              type="text"
+              label="Course Details information"
             />
           </div>
-          <div className='mb-4'>
+          <div className="mb-4">
             <Textarea
-              color='teal'
-              className='w-full'
-              itemType='text'
+              color="teal"
+              className="w-full"
+              itemType="text"
               required
-              name='instructorInformation'
-              type='text'
-              label='Instructor Information'
+              name="instructorInformation"
+              type="text"
+              label="Instructor Information"
             />
           </div>
-          <div className='mb-4'>
+          <div className="mb-4">
             <Input
               required
-              type='file'
-              className='w-full'
-              color='teal'
-              name='image'
-              label='Course Photo Upload Here'
+              type="file"
+              className="w-full"
+              color="teal"
+              name="image"
+              label="Course Photo Upload Here"
             />
           </div>
           <div>
             <Button
-              className='w-full'
+              className="w-full"
               value={`Add Course`}
-              label='Add Course'
-              type='submit'
-              color='teal'
-              variant='outlined'
+              label="Add Course"
+              type="submit"
+              color="teal"
+              variant="outlined"
             >
               {" "}
               Add Course{" "}
