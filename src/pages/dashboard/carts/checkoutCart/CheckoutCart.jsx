@@ -40,50 +40,63 @@ const CheckoutCart = () => {
             Shopping Cart
           </h4>
         </div>
-        <div className="flex space-x-10 ">
+        {/* className="flex space-x-10 " */}
+        <div className="grid md:flex md:space-x-10">
           <div className="md:min-w-[500px]">
             <div>
               <h4 className="mt-3 font-semibold text-gray-800 pb-3 border-b border-blue-gray-200">
-                {cart?.length > 0 && cart?.length || 0} Course in Cart
+                {(cart?.length > 0 && cart?.length) || 0} Course in Cart
               </h4>
             </div>
             <div className="mt-3 flex flex-col space-y-5">
-              {cart?.length > 0 ? cart?.map((cartItem) => (
-                <SingleCheckoutCart
-                  key={cartItem._id}
-                  cartItem={cartItem}
-                  isRefetch={isRefetch}
-                />
-              )) : <div className="flex justify-center text-center mt-10">
-                <div>
-                 <h4 className="text-2xl font-semibold mb-9 text-blue-gray-700"> Your Cart is Empty</h4>
-                 <Link to={'/courses'} className="text-teal-500 hover:text-teal-700 font-semibold text-sm">
-                 Add A Course
-                 </Link>
+              {cart?.length > 0 ? (
+                cart?.map((cartItem) => (
+                  <SingleCheckoutCart
+                    key={cartItem._id}
+                    cartItem={cartItem}
+                    isRefetch={isRefetch}
+                  />
+                ))
+              ) : (
+                <div className="flex justify-center text-center mt-10">
+                  <div>
+                    <h4 className="text-2xl font-semibold mb-9 text-blue-gray-700">
+                      {" "}
+                      Your Cart is Empty
+                    </h4>
+                    <Link
+                      to={"/courses"}
+                      className="text-teal-500 hover:text-teal-700 font-semibold text-sm"
+                    >
+                      Add A Course
+                    </Link>
+                  </div>
                 </div>
-                </div>}
+              )}
             </div>
           </div>
-          <aside className="mt-2">
-            <div className="mt-2">
-              <h4 className=" flex flex-col ">
-                <span className="font-bold">Total:</span>{" "}
-                <span className="text-3xl font-bold">${totalPrice}</span>
-              </h4>
-            </div>
-            <div className="mt-2 text-center pb-4 border-b border-blue-gray-200">
-              <Link to={"/paymentCheckout"}>
-                <button
-                  disabled={cart?.length == 0}
-                  className="w-full rounded-sm bg-teal-600 text-xl font-bold px-10 hover:bg-teal-700 py-3 text-white"
-                >
-                  Checkout
-                </button>
-              </Link>
-            </div>
-            <div className="mt-4">
-              <h4 className="font-semibold">Promotion</h4>
-              <CoupneApply />
+          <aside className="mt-2 flex justify-end">
+            <div>
+              <div className="mt-2">
+                <h4 className=" flex flex-col ">
+                  <span className="font-bold">Total:</span>{" "}
+                  <span className="text-3xl font-bold">${totalPrice}</span>
+                </h4>
+              </div>
+              <div className="mt-2 text-center pb-4 border-b border-blue-gray-200">
+                <Link to={"/paymentCheckout"}>
+                  <button
+                    disabled={cart?.length == 0}
+                    className="w-full rounded-sm bg-teal-600 text-xl font-bold px-10 hover:bg-teal-700 py-3 text-white"
+                  >
+                    Checkout
+                  </button>
+                </Link>
+              </div>
+              <div className="mt-4">
+                <h4 className="font-semibold">Promotion</h4>
+                <CoupneApply />
+              </div>
             </div>
           </aside>
         </div>

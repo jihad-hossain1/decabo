@@ -25,6 +25,7 @@ import PaymentCartLayout from "../layouts/payment/PaymentCartLayout";
 import EnrolledCourse from "../pages/enrolledCourse/EnrolledCourse";
 import EnrolledMainDashboard from "../pages/enrolledCourse/EnrolledMainDashboard/EnrolledMainDashboard";
 import FavoritePage from "../pages/FavoritePage/FavoritePage";
+import UploadVideo from "../pages/dashboard/uploadVideo/UploadVideo";
 
 export const router = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/enroll",
         element: <Enroll></Enroll>,
+      },
+      {
+        path: "/dashboard/uploadCourse",
+        element: <UploadVideo></UploadVideo>,
       },
     ],
   },
