@@ -1,30 +1,73 @@
 import { Avatar } from "@material-tailwind/react";
-import React from "react";
+import React, { useContext } from "react";
 import { Rate } from "antd";
 // import RemoveFromCart from "../removeFromCart/RemoveFromCart";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-const SingleCheckoutCart = ({ cartItem ,isRefetch}) => {
+import useFavorite from "../../../../hooks/useFavorite";
+import { AuthContext } from "../../../../provider/AuthProvider";
+
+const SingleCheckoutCart = ({ cartItem, isRefetch }) => {
+  const { user } = useContext(AuthContext);
+  const [favorite, isFavFetch] = useFavorite();
   const { _id, course } = cartItem;
-
-  const handleRemoveCart =(ci)=>{
+  // handle for remove from cart
+  const handleRemoveCart = (ci) => {
     try {
-        axios.delete(`${import.meta.env.VITE_BASE_URL}/carts_remove/${ci?._id}`).then((res) => {
-            if (res.data.deletedCount > 0) {
-                isRefetch();
-              // Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              toast.success("your comment delete successfull");
-            }
-          });
-
+      axios
+        .delete(`${import.meta.env.VITE_BASE_URL}/carts_remove/${ci?._id}`)
+        .then((res) => {
+          if (res.data.deletedCount > 0) {
+            isRefetch();
+            // Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            toast.success("iTem delete successfull");
+          }
+        });
     } catch (error) {
-        console.log(error.message);
-        
+      console.log(error.message);
     }
-  }
+  };
+  // handle add to favorite cart
+  const handleFavCart = async (favCourse) => {
+    if (!user) {
+      return toast.error("login first");
+    } else {
+      const favVerify = favorite?.find(
+        ({ courseId }) => courseId == favCourse._id
+      );
+      if (favVerify) {
+        return toast.error("already added in whitelist ");
+      } else {
+        const info = {
+          course: favCourse,
+          email: user?.email,
+          userName: user?.displayName,
+          photo: user?.photoURL,
+          courseId: favCourse?._id,
+        };
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/favorite`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(info),
+        });
+        const data = await res.json();
+        if (data) {
+          isFavFetch();
+          toast.success("check your whitelist");
+        }
+        console.log(data);
+      }
+    }
+  };
+  // when a course available in favorite option then remove this button from ui
+  const removeFavButton = favorite?.find(
+    ({ courseId }) => courseId == course?._id
+  );
   return (
     <div className="flex justify-between space-x-3">
-        <Toaster />
+      <Toaster />
       <div className="flex space-x-4">
         <div>
           <Avatar
@@ -57,14 +100,24 @@ const SingleCheckoutCart = ({ cartItem ,isRefetch}) => {
       </div>
       <div className="flex flex-col justify-end items-end text-xs space-y-1">
         <h4 className="text-xl font-bold">${course?.coursePrice}</h4>
-        <button onClick={()=>handleRemoveCart(cartItem)} className="text-teal-600 hover:text-teal-500">Remove</button>
-          <button className="text-teal-600 hover:text-teal-500">
-            Move to Whitelist
-          </button>
-          <button className="text-teal-600 hover:text-teal-500">
-            Save for Later
-          </button>
-        </div>
+        <button
+          onClick={() => handleRemoveCart(cartItem)}
+          className="text-teal-600 hover:text-teal-500"
+        >
+          Remove
+        </button>
+        <button
+          onClick={() => handleFavCart(cartItem?.course)}
+          className={
+            removeFavButton ? "hidden" : "text-teal-600 hover:text-teal-500"
+          }
+        >
+          Move to Whitelist
+        </button>
+        <button className="text-teal-600 hover:text-teal-500">
+          Save for Later
+        </button>
+      </div>
     </div>
   );
 };

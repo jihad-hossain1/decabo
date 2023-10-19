@@ -69,7 +69,7 @@ const Favorites = () => {
           </button>
         </MenuHandler>
         <MenuList className="mt-7 max-w-[300px] p-4 min-w-[100px]  overflow-visible lg:grid">
-          <ul className="flex w-full flex-col gap-1">
+          <ul className="flex w-full flex-col gap-2">
             {favorite?.length > 0 ? (
               favorite?.map(({ course, _id }) => (
                 <div key={_id}>
