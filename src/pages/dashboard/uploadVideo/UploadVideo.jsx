@@ -1,10 +1,12 @@
 import React from "react";
 import UploadWidget from "../../../widget/UploadWidget";
+import MultipleUploadForm from "../../../widget/MultipleUploadForm";
 
 const UploadVideo = () => {
   return (
-    <div className="border border-blue-gray-300 h-20">
+    <div className="">
       <UploadWidget />
+      <MultipleUploadForm />
     </div>
   );
 };

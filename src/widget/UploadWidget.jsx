@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-im;
+import toast, { Toaster } from "react-hot-toast";
+import { Triangle } from "react-loader-spinner";
 
 const UploadWidget = () => {
   const [video, setVideo] = useState(null);
@@ -12,7 +13,7 @@ const UploadWidget = () => {
     data.append("file", type === "image" ? image : video);
     data.append(
       "upload_preset",
-      type === "image" ? "images_preset" : "videos_preset"
+      type === "image" ? "images_presets" : "videos_presets"
     );
 
     try {
@@ -21,6 +22,7 @@ const UploadWidget = () => {
       let api = `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`;
 
       const res = await axios.post(api, data);
+      console.log(res);
       const { secure_url } = res.data;
       console.log(secure_url);
       return secure_url;
@@ -40,24 +42,28 @@ const UploadWidget = () => {
       const videoUrl = await uploadFile("video");
 
       //send backend api request
-      await axios.post(`${import.meta.env.VITE_BASE_URL}/api/videos`, {
-        imgUrl,
-        videoUrl,
-      });
+      // await axios.post(`${import.meta.env.VITE_BASE_URL}/api/videos`, {
+      //   imgUrl,
+      //   videoUrl,
+      // });
       // reset states
       setimage(null);
       setVideo(null);
 
       toast.success("file upload success");
+      console.log(imgUrl, videoUrl);
       setloading(false);
+      const form = e.target;
+      form.reset();
     } catch (error) {
       console.error(error);
     }
   };
   return (
     <div>
+      <Toaster />
       <form action="" onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className="mb-10">
           <label htmlFor="video">Video Upload</label>
           <br />
           <input
@@ -88,6 +94,17 @@ const UploadWidget = () => {
           Submit
         </button>
       </form>
+      {loading && (
+        <Triangle
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="triangle-loading"
+          wrapperStyle={{}}
+          wrapperClassName=""
+          visible={true}
+        />
+      )}
     </div>
   );
 };
