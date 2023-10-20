@@ -62,8 +62,12 @@ const UploadWidget = () => {
   return (
     <div>
       <Toaster />
-      <form action="" onSubmit={handleSubmit}>
-        <div className="mb-10">
+      <form
+        className="grid md:flex items-center gap-3"
+        action=""
+        onSubmit={handleSubmit}
+      >
+        <div className="mb-4 md:mb-0">
           <label htmlFor="video">Video Upload</label>
           <br />
           <input
@@ -75,7 +79,7 @@ const UploadWidget = () => {
             onChange={(e) => setVideo((prev) => e.target.files[0])}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-4 md:mb-0">
           <label htmlFor="images">Image Upload</label>
           <br />
           <input
@@ -87,12 +91,14 @@ const UploadWidget = () => {
             onChange={(e) => setimage((prev) => e.target.files[0])}
           />
         </div>
-        <button
-          className="border border-gray-300 rounded shadow px-3 py-2"
-          type="submit"
-        >
-          Submit
-        </button>
+        <div className="md:mt-4">
+          <button
+            className="border border-gray-400 rounded px-3 py-1"
+            type="submit"
+          >
+            Upload
+          </button>
+        </div>
       </form>
       {loading && (
         <Triangle

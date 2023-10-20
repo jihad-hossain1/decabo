@@ -1,11 +1,13 @@
-// import { image } from "@cloudinary/url-gen/qualifiers/source";
+// import React from "react";
 import React, { useState } from "react";
-import { uploadMultiple } from "./UploadMultiple";
+// import { uploadMultiple } from "./UploadMultiple";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { uploadMultiVideo } from "./UploadMultiple";
+import VideoPlayer from "./video/VideoPlayer";
 
-const MultipleUploadForm = () => {
-  const [multiImage, setMultiImage] = useState([]);
+const MultipleVideoUpload = () => {
+  const [multiVideo, setmultiVideo] = useState([]);
   const [multiLink, setmultiLink] = useState([]);
   const [loading, setloading] = useState(false);
 
@@ -13,12 +15,12 @@ const MultipleUploadForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(multiImage);
+    console.log(multiVideo);
     try {
       setloading(true);
       let arr = [];
-      for (let i = 0; i < multiImage.length; i++) {
-        const data = await uploadMultiple(multiImage[i]);
+      for (let i = 0; i < multiVideo.length; i++) {
+        const data = await uploadMultiVideo(multiVideo[i]);
         console.log(data);
         arr.push(data);
       }
@@ -37,17 +39,17 @@ const MultipleUploadForm = () => {
       <Toaster />
       <form action="" onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="image">Multiple Image Uplaod</label>
+          <label htmlFor="video">Multiple Video Uplaod</label>
           <br />
           <input
             required
             className="border border-gray-400"
             type="file"
             name=""
-            accept="image/*"
-            id="image"
+            accept="video/*"
+            id="video"
             multiple={true}
-            onChange={(e) => setMultiImage(e.target.files)}
+            onChange={(e) => setmultiVideo(e.target.files)}
           />
         </div>
         <div>
@@ -75,11 +77,8 @@ const MultipleUploadForm = () => {
               key={item?.url}
               className="border rounded border-r-blue-gray-300"
             >
-              <img
-                src={item?.url}
-                className="max-w-[300px] object-cover"
-                alt=""
-              />
+              {/* <VideoPlayer video={item?.url} /> */}
+              <iframe aria-controls="" src={item?.url} frameborder="0"></iframe>
             </div>
           ))}
         </div>
@@ -91,17 +90,4 @@ const MultipleUploadForm = () => {
   );
 };
 
-export default MultipleUploadForm;
-
-// <div className="grid md:grid-cols-2 ">
-//     {multiLink?.map((item) => {
-//         return (
-//             <div className="border rounded border-r-blue-gray-300">
-//                 <img
-//                     src={item?.url}
-//                     className="max-w-[300px] object-cover"
-//                     alt=""
-//                 />
-//             </div>
-//     )
-//        </div>
+export default MultipleVideoUpload;

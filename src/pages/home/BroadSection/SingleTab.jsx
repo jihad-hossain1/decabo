@@ -44,7 +44,7 @@ const SingleTab = ({ ite: course }) => {
     <div className="max-w-[300]">
       <Toaster />
       <Link to={`/course/${course?._id}`}>
-        <div className=" h-[320px] px-4 py-2  bg-cyan-50 bg-opacity-20 rounded-lg border border-cyan-50 hover:border-cyan-100 shadow-sm drop-shadow-sm hover:drop-shadow">
+        <div className="md:overflow-hidden md:h-[310px] px-4 py-2  bg-cyan-50 bg-opacity-20 rounded-lg border border-cyan-50 hover:border-cyan-100 shadow-sm drop-shadow-sm hover:drop-shadow">
           <div className="flex justify-center">
             <div className="max-w-[300px] ">
               <img
