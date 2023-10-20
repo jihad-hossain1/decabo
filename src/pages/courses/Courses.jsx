@@ -28,14 +28,44 @@ const Courses = () => {
       )
     }
   return (
-    <div className='bg-blue-gray-100 bg-opacity-20 min-h-screen'>
-      <div className='max-w-[1100px] mx-auto px-2 md:px-10 py-4 '>
-       
-        {/* courses section  */}
-        <div className='mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 pb-6'>
-          {courses?.map((course) => (
+    <div className=" min-h-screen">
+      <div className="max-w-7xl mx-auto px-2 md:px-0 py-4 ">
+        {/* javascript courses section  */}
+        <div>
+          <h4 className="text-4xl font-bold text-gray-900 mb-4">
+            What to learn next
+          </h4>
+          <h4 className="text-xl font-bold text-gray-900 mb-3">
+            Because you viewed “
+            <span className="text-teal-700">Javascript for Beginners</span>”
+          </h4>
+        </div>
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 pb-6">
+          {courses
+            ?.filter((item) => item?.categories === "web-Developer")
+            .map((course) => (
               <SingleCourse key={course._id} course={course}></SingleCourse>
             ))}
+        </div>
+        {/* javascript courses section  */}
+        <div className="mt-6">
+          <h4 className="text-4xl font-bold text-gray-900 mb-4">
+            Popular for Web Developers{" "}
+            <span className="text-teal-700 ml-3 text-xs underline cursor-pointer">
+              Edit occupation
+            </span>
+          </h4>
+          <div className="flex items-center space-x-3">
+            <h4 className="bg-teal-200 px-2 py-1 text-xs font-bold text-blue-gray-900 inline-block">
+              New
+            </h4>
+            <p className="text-gray-700 text-xs">Inspired by your selections</p>
+          </div>
+        </div>
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 pb-6">
+          {courses?.map((course) => (
+            <SingleCourse key={course._id} course={course}></SingleCourse>
+          ))}
         </div>
       </div>
     </div>
