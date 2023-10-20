@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
+im;
+
 const UploadWidget = () => {
   const [video, setVideo] = useState(null);
   const [image, setimage] = useState(null);
@@ -18,7 +20,10 @@ const UploadWidget = () => {
       let resourceType = type === "image" ? "image" : "video";
       let api = `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`;
 
-      const res = await axios;
+      const res = await axios.post(api, data);
+      const { secure_url } = res.data;
+      console.log(secure_url);
+      return secure_url;
     } catch (error) {
       console.error(error);
     }
@@ -33,6 +38,18 @@ const UploadWidget = () => {
 
       //upload video file
       const videoUrl = await uploadFile("video");
+
+      //send backend api request
+      await axios.post(`${import.meta.env.VITE_BASE_URL}/api/videos`, {
+        imgUrl,
+        videoUrl,
+      });
+      // reset states
+      setimage(null);
+      setVideo(null);
+
+      toast.success("file upload success");
+      setloading(false);
     } catch (error) {
       console.error(error);
     }
