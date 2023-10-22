@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { uploadMultiVideo } from "./UploadMultiple";
 import VideoPlayer from "./video/VideoPlayer";
+// import CloudnaryVideoPlayer from "./video/CloudnaryVideoPlayer";
 
 const MultipleVideoUpload = () => {
   const [multiVideo, setmultiVideo] = useState([]);
@@ -71,13 +72,14 @@ const MultipleVideoUpload = () => {
         </button>
       </div>
       {toggleSeeGallary && (
-        <div className="grid md:grid-cols-4 ">
+        <div className="grid md:grid-cols-2 ">
           {multiLink?.map((item) => (
             <div
               key={item?.url}
               className="border rounded border-r-blue-gray-300"
             >
               {/* <VideoPlayer video={item?.url} /> */}
+              {/* <CloudnaryVideoPlayer video={item?.url} /> */}
               <iframe aria-controls="" src={item?.url} frameborder="0"></iframe>
             </div>
           ))}

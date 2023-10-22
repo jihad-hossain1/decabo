@@ -41,32 +41,31 @@ const SingleTab = ({ ite: course }) => {
     }
   };
   return (
-    <div className="max-w-[300]">
+    <div className="max-w-[300] group">
       <Toaster />
-      <Link to={`/course/${course?._id}`}>
-        <div className="md:overflow-hidden md:h-[310px] px-4 py-2  bg-cyan-50 bg-opacity-20 rounded-lg border border-cyan-50 hover:border-cyan-100 shadow-sm drop-shadow-sm hover:drop-shadow">
+      <Link to={`/course/${course?._id}`} className="relative">
+        <div className="md:overflow-hidden md:h-[350px] px-2 py-2 ">
           <div className="flex justify-center">
-            <div className="max-w-[300px] ">
+            <div className="max-w-[300px]">
               <img
                 src={course?.img}
-                className="rounded object-cover"
+                className="rounded-sm object-cover md:h-[180px] border border-gray-500"
                 alt="course photo"
               />
             </div>
           </div>
-          <h4 className="text-xl font-bold mb-2 break-all">
-            {course?.title ? course?.title : "Ops.. fetch eRRoR"}
+          <h4 className="text-[15px] font-bold mb-2 break-all mt-2">
+            {/* {`${course?.title.slice(0, 40)}...`} */}
+            {course?.title?.split(" ").length > 43
+              ? `${course?.title.slice(0, 43)}...`
+              : `${course?.title}`}
           </h4>
           <p className=" text-xs text-blue-gray-800 ">
-            {course?.instructorName
-              ? course?.instructorName
-              : "Ops.. fetch eRRoR"}
+            {course?.instructorName}
           </p>
           <div className="flex space-x-2 items-center">
             <p className="text-sm text-blue-gray-600 break-all">
-              {course?.instructorRating
-                ? course?.instructorRating
-                : "Ops.. fetch eRRoR"}
+              {course?.instructorRating}
             </p>
             <Rate disabled defaultValue={course?.instructorRating} />
             <p className="text-sm text-blue-gray-900">{`(${
@@ -74,14 +73,13 @@ const SingleTab = ({ ite: course }) => {
             })`}</p>
           </div>
           <h4 className=" text-blue-gray-800 font-bold break-all">
-            {course?.coursePrice ? (
-              <span>{course?.coursePrice}$</span>
-            ) : (
-              "Ops.. fetch eRRoR"
-            )}
+            {course?.coursePrice}
           </h4>
         </div>
       </Link>
+      {/* <div className="absolute hidden group-hover:block -top-5">
+        <h4>{course?._id}</h4>
+      </div> */}
     </div>
   );
 };

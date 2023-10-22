@@ -5,7 +5,9 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { Button } from "@material-tailwind/react";
-import { useState } from "react";
+
+
+
 const BroadSection = () => {
   const [courses, refetch, loading, isError, error] = useCourse();
 
@@ -37,7 +39,7 @@ const BroadSection = () => {
   const removeDuplicateCategories = courses?.filter(
     ({ categories }, index) => !filted?.includes(categories, index + 1)
   );
-  // console.log(removeDuplicateCategories);
+
   return (
     <div className="my-20">
       <div className="max-w-7xl mx-auto">
@@ -63,17 +65,17 @@ const BroadSection = () => {
             </TabList>
 
             <div className="mt-4">
-              <TabPanel className={"px-2 pb-1"}>
+              <TabPanel className={"px-2 pb-1 "}>
                 <div className="mb-2">
                   <h4 className="text-2xl font-semibold text-gray-900 mb-2">
                     Build websites and applications with Web Development
                   </h4>
                   <h6 className="text-gray-800 mb-2">
                     The world of web development is as wide as the internet
-                    itself. Much of our social and vocational lives play out on
-                    the internet, which prompts new industries aimed at
-                    creating, managing, and debugging the websites and
-                    applications that we increasingly rely on.
+                    itself. Much of our social and vocational lives play
+                    <br /> out on the internet, which prompts new industries
+                    aimed at creating, managing, and <br /> debugging the
+                    websites and applications that we increasingly rely on.
                   </h6>
                   <Button
                     color="blue-gray"
@@ -83,7 +85,7 @@ const BroadSection = () => {
                     Explore Web Development
                   </Button>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                   {courses
                     ?.filter((item) => item?.categories === "web-Developer")
                     .map((ite, index) => (
@@ -98,8 +100,8 @@ const BroadSection = () => {
                   </h4>
                   <h6 className="text-gray-800 mb-2">
                     The world of web development is as wide as the internet
-                    itself. Much of our social and vocational lives play out on
-                    the internet, which prompts new industries aimed at
+                    itself. Much of our social and vocational lives play <br />{" "}
+                    out on the internet, which prompts new industries aimed at
                     creating, managing, and debugging the websites and
                     applications that we increasingly rely on.
                   </h6>
@@ -111,7 +113,7 @@ const BroadSection = () => {
                     Explore Graphics Design
                   </Button>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                   {courses
                     ?.filter((item) => item?.categories === "graphics")
                     .map((ite, index) => (
@@ -126,8 +128,8 @@ const BroadSection = () => {
                   </h4>
                   <h6 className="text-gray-800 mb-2">
                     The world of web development is as wide as the internet
-                    itself. Much of our social and vocational lives play out on
-                    the internet, which prompts new industries aimed at
+                    itself. Much of our social and vocational lives play <br />{" "}
+                    out on the internet, which prompts new industries aimed at
                     creating, managing, and debugging the websites and
                     applications that we increasingly rely on.
                   </h6>
@@ -139,7 +141,7 @@ const BroadSection = () => {
                     Explore Javascript
                   </Button>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                   {courses
                     ?.filter((item) => item?.categories === "javascript")
                     .map((ite, index) => (
@@ -165,7 +167,7 @@ const BroadSection = () => {
                     Explore Data Science
                   </Button>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                   {courses
                     ?.filter((item) => item?.categories === "dataScience")
                     .map((ite, index) => (
@@ -180,8 +182,8 @@ const BroadSection = () => {
                   </h4>
                   <h6 className="text-gray-800 mb-2">
                     Explore our online drawing classes and learn pencil drawing,
-                    figure drawing, cartoon drawing, character drawing for
-                    cartoons and anime, illustration, sketching, shading and
+                    figure drawing, cartoon drawing, character drawing <br />{" "}
+                    for cartoons and anime, illustration, sketching, shading and
                     more. Take an overview course on the fundamentals of drawing
                     or zero in on an area
                   </h6>
@@ -193,7 +195,7 @@ const BroadSection = () => {
                     Explore Drawing
                   </Button>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                   {courses
                     ?.filter((item) => item?.categories === "drawing")
                     .map((ite, index) => (
@@ -208,9 +210,10 @@ const BroadSection = () => {
                   </h4>
                   <h6 className="text-gray-800 mb-2">
                     TWhether or not you aim for certification, an AWS course
-                    offers the theory and practical skills you need to land a
-                    job in cloud development, sales, engineering, networking,
-                    and more. The better you become at cloud computing, the more
+                    offers the theory and practical skills you need to land{" "}
+                    <br /> a job in cloud development, sales, engineering,
+                    networking, and more. The better you become at cloud
+                    computing, the more
                   </h6>
                   <Button
                     color="blue-gray"
@@ -220,7 +223,7 @@ const BroadSection = () => {
                     Explore Databse AWS
                   </Button>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                   {courses
                     ?.filter((item) => item?.categories === "databseAWS")
                     .map((ite, index) => (
@@ -230,44 +233,6 @@ const BroadSection = () => {
               </TabPanel>
             </div>
           </Tabs>
-          {/* <Tabs value={activeTab}>
-            <TabsHeader
-              className="rounded-none border-b border-blue-gray-50 bg-transparent p-0 max-w-[500px]"
-              indicatorProps={{
-                className:
-                  "bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
-              }}
-            >
-              <Tab
-                value={"Python"}
-                onClick={() => setActiveTab("Python")}
-                className={activeTab === "Python" ? "text-gray-900" : ""}
-              >
-                {"Python"}
-              </Tab>
-              <Tab
-                value={"javascript"}
-                onClick={() => setActiveTab("javascript")}
-                className={activeTab === "javascript" ? "text-gray-900" : ""}
-              >
-                {"javascript"}
-              </Tab>
-              <Tab
-                value={"Web Developer"}
-                onClick={() => setActiveTab("Web Developer")}
-                className={activeTab === "Web Developer" ? "text-gray-900" : ""}
-              >
-                {"Web Developer"}
-              </Tab>
-            </TabsHeader>
-            <TabsBody>
-              {data.map(({ value, desc }) => (
-                <TabPanel key={value} value={value}>
-                  {desc}
-                </TabPanel>
-              ))}
-            </TabsBody>
-          </Tabs> */}
         </div>
       </div>
     </div>

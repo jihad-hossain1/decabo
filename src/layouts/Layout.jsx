@@ -70,7 +70,7 @@ export const StickyNavbar = () => {
                 coursesSearch={coursesSearch}
               />
             </div>
-            <div className="flex items-center space-x-3">
+            <div className="hidden md:flex items-center space-x-3">
               <div>
                 <div className="flex items-center text-xs md:text-sm space-x-3">
                   <Link to={"/"} className="hover:text-teal-700">
@@ -79,7 +79,7 @@ export const StickyNavbar = () => {
                   <Link to={"/"} className="hover:text-teal-700">
                     Teach
                   </Link>
-                  <div>
+                  <div className="hidden md:block">
                     {/* carts section  */}
                     <HeaderCarts />
                   </div>
@@ -87,7 +87,9 @@ export const StickyNavbar = () => {
               </div>
               {user ? (
                 <>
-                  <Favorites />
+                  <div className="hidden md:block">
+                    <Favorites />
+                  </div>
                   {/* Notification  */}
                   <Notification />
                   <div className="">

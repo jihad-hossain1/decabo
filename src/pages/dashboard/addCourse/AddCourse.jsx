@@ -11,6 +11,9 @@ const AddCourse = () => {
   const [isCategory, setIsCategory] = useState("");
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const navgiation = useNavigate();
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -24,6 +27,8 @@ const AddCourse = () => {
     const instructorRating = form.instructorRating.value;
     const coursePrice = form.coursePrice.value;
     const courseRequirement = form.courseRequirement.value;
+
+    // console.log(courseRequirement)
 
     const image = form.image.files[0];
     const formData = new FormData();
@@ -55,7 +60,7 @@ const AddCourse = () => {
       instructorTitle,
       courseRequirement,
     };
-    console.log(info);
+    // console.log(info);
     try {
       const res = await fetch(`https://decabo-server.vercel.app/course`, {
         method: "POST",
@@ -65,23 +70,30 @@ const AddCourse = () => {
         body: JSON.stringify(info),
       });
       const resData = res.json();
-      console.log(resData)
+      console.log(resData);
       if (resData) {
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Your work has been saved',
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
           showConfirmButton: false,
-          timer: 1500
-        })
-        // form.reset();
-        // navgiation("/courses");
+          timer: 1500,
+        });
       } else {
         toast.error(`try again adding ${title} `);
       }
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  const [cap, setCap] = useState([]);
+  const handleTest = (e) => {
+    e.preventDefault();
+    let capture = e.target.test.value;
+    const splitdot = capture.split(/[.!]/);
+    setCap(splitdot);
+    console.log(cap);
   };
   return (
     <div className="md:w-[1280px] mx-auto  my-10 px-2 pb-6">
@@ -279,6 +291,30 @@ const AddCourse = () => {
             </Button>
           </div>
         </form>
+        <form className="hidden" action="" onSubmit={handleTest}>
+          <div>
+            <label>test split</label>
+            <br />
+            <textarea
+              name="test"
+              id=""
+              className="border outline-none focus:outline-none border-gray-900 w-full"
+              cols="30"
+              rows="10"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="border border-gray-500 px-3 py-1 rounded-sm"
+          >
+            test
+          </button>
+        </form>
+        {cap?.map((i) => (
+          <ul key={i} className="list-disc">
+            <li>{i}</li>
+          </ul>
+        ))}
       </div>
     </div>
   );
