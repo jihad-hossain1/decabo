@@ -307,7 +307,7 @@ const CourseDetails = () => {
         <div
           className={`${
             comment.length > 0
-              ? "border border-cyan-50 p-4 rounded text-blue-gray-700 grid gap-3"
+              ? "border border-cyan-50 p-4 rounded text-blue-gray-700 flex flex-col justify-center items-center gap-3"
               : "text-blue-gray-600"
           }`}
         >

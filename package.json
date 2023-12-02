@@ -20,6 +20,7 @@
     "axios": "^1.5.1",
     "cloudinary-video-player": "^1.10.0",
     "firebase": "^10.4.0",
+    "framer-motion": "^10.16.12",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
@@ -32,6 +33,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.16.0",
     "react-tabs": "^6.0.2",
+    "sass": "^1.69.5",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.7.31",
     "swiper": "^10.3.1"

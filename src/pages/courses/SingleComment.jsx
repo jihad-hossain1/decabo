@@ -91,121 +91,122 @@ const SingleComment = ({ item, refetch }) => {
   return (
     <>
       <Toaster />
-      <div className="max-w-2xl px-8 py-4 bg-teal-50/10 border  shadow-teal-200/40 border-gray-300 rounded-lg shadow drop-shadow dark:bg-gray-800">
-        <div className="flex items-center justify-between">
-          <span className="text-sm font-light text-blue-gray-600 dark:text-gray-400 ">
-            {timeDate?.commentDate || (
-              <span className="text-xs text-blue-gray-500">!ops error</span>
-            )}
-          </span>
-          <span className="text-sm font-light text-blue-gray-600 dark:text-gray-400 ">
-            {timeDate?.commentTime || (
-              <span className="text-xs text-blue-gray-500">!ops error</span>
-            )}
-          </span>
-        </div>
+      <div className="">
+        <div className="md:min-w-[500px] max-w-2xl px-8 py-4 border shadow">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-light text-blue-gray-600 dark:text-gray-400 ">
+              {timeDate?.commentDate || (
+                <span className="text-xs text-blue-gray-500">!ops error</span>
+              )}
+            </span>
+            <span className="text-sm font-light text-blue-gray-600 dark:text-gray-400 ">
+              {timeDate?.commentTime || (
+                <span className="text-xs text-blue-gray-500">!ops error</span>
+              )}
+            </span>
+          </div>
 
-        <div className="mt-2">
-          <p className="mt-2 text-gray-600 dark:text-gray-300">{comment}</p>
-        </div>
+          <div className="mt-2">
+            <p className="mt-2 text-gray-600 dark:text-gray-300">{comment}</p>
+          </div>
 
-        <div
-          className={`${
-            user?.email == item.userEmail
-              ? "flex items-center justify-between mt-4"
-              : "flex items-center justify-end mt-4"
-          }`}
-        >
           <div
-            className={`${user?.email == item.userEmail ? "block" : "hidden"}`}
+            className={`${
+              user?.email == item.userEmail
+                ? "flex items-center justify-between mt-4"
+                : "flex items-center justify-end mt-4"
+            }`}
           >
-            {/* TODO --> comment Update & delete  */}
-            <Tooltip content="Edit Comment">
-              <IconButton onClick={()=>openModal(item)} variant="text">
-                <PencilIcon className="h-4 w-4" />
-              </IconButton>
-            </Tooltip>
+            <div
+              className={`${
+                user?.email == item.userEmail ? "block" : "hidden"
+              }`}
+            >
+              {/* TODO --> comment Update & delete  */}
+              <Tooltip content="Edit Comment">
+                <IconButton onClick={() => openModal(item)} variant="text">
+                  <PencilIcon className="h-4 w-4" />
+                </IconButton>
+              </Tooltip>
 
-           <Tooltip content="dlete Comment">
-           <IconButton
-                onClick={() => handleDeleteComment(item)}
-                variant="text"
-              >
-                <TrashIcon className="h-4 w-4 text-pink-800" />
-              </IconButton>
+              <Tooltip content="dlete Comment">
+                <IconButton
+                  onClick={() => handleDeleteComment(item)}
+                  variant="text"
+                >
+                  <TrashIcon className="h-4 w-4 text-pink-800" />
+                </IconButton>
+              </Tooltip>
 
-           </Tooltip>
-              
-            
-            {/* TODO --> comment Update & delete  */}
+              {/* TODO --> comment Update & delete  */}
+            </div>
+
+            <div className="flex items-center">
+              <img
+                className="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block"
+                src={userPhoto}
+                alt="avatar"
+              />
+              <p className="font-bold text-gray-700 cursor-pointer dark:text-gray-200">
+                {userNaem}
+              </p>
+            </div>
           </div>
-
-          <div className="flex items-center">
-            <img
-              className="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block"
-              src={userPhoto}
-              alt="avatar"
-            />
-            <p className="font-bold text-gray-700 cursor-pointer dark:text-gray-200">
-              {userNaem}
-            </p>
-          </div>
-         
         </div>
       </div>
-          {/* modal components  */}
-      <dialog ref={modalRef} className='w-[90%] max-w-[500px] rounded-md px-3 pt-2 pb-5'>
+      {/* modal components  */}
+      <dialog
+        ref={modalRef}
+        className="w-[90%] max-w-[500px] rounded-md px-3 pt-2 pb-5"
+      >
         <div>
-        <div className='text-right mb-2'>
-          <button
-            onClick={() => {
-              closeModal();
-              
-            }}
-            className='hover:text-pink-600 p-2'
-          >
-            Close
-          </button>
-        </div>
+          <div className="text-right mb-2">
+            <button
+              onClick={() => {
+                closeModal();
+              }}
+              className="hover:text-pink-600 p-2"
+            >
+              Close
+            </button>
+          </div>
           <form ref={formRef} action="" onSubmit={handleUpdate}>
-          <h4 className='text-2xl font-semibold text-center text-blue-gray-700 mb-5'>
+            <h4 className="text-2xl font-semibold text-center text-blue-gray-700 mb-5">
               Update Your Comment
             </h4>
-              <div className='mb-4'>
-                <Input
+            <div className="mb-4">
+              <Input
                 readOnly
-                  
-                  type='text'
-                  className='w-full'
-                  color='teal'
-                  name='commentUserName'
-                  label='Your Name'
-                  defaultValue={updateData?.commentUser}
-                />
-              </div>
-              <div className='mb-4'>
-                <Textarea
-                  required
-                  type='text'
-                  className='w-full'
-                  color='teal'
-                  name='commentUserComment'
-                  label='Your Comment '
-                  defaultValue={updateData?.comment}
-                />
-              </div>
-              <div>
-                <Button
-                  className='w-full'
-                 
-                  type='submit'
-                  color='teal'
-                  variant='outlined'
-                >
-                  {" "}
-                  Update Comment{" "}
-                </Button>
-              </div>
+                type="text"
+                className="w-full"
+                color="teal"
+                name="commentUserName"
+                label="Your Name"
+                defaultValue={updateData?.commentUser}
+              />
+            </div>
+            <div className="mb-4">
+              <Textarea
+                required
+                type="text"
+                className="w-full"
+                color="teal"
+                name="commentUserComment"
+                label="Your Comment "
+                defaultValue={updateData?.comment}
+              />
+            </div>
+            <div>
+              <Button
+                className="w-full"
+                type="submit"
+                color="teal"
+                variant="outlined"
+              >
+                {" "}
+                Update Comment{" "}
+              </Button>
+            </div>
           </form>
         </div>
       </dialog>

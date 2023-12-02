@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Hero from "../../components/Hero";
 import InterActivity from "../../components/InterActivity";
 import Hero2 from "./Hero2";
 import TrustByCompany from "./TrustByCompany";
@@ -18,7 +17,6 @@ const HomePage = () => {
       {!user ? (
         <>
           <Hero2 />
-          {/* <Hero></Hero> */}
           <TrustByCompany />
           <BroadSection />
           <Testimonial />

@@ -31,19 +31,20 @@ import {
 import {HiOutlineMenu,HiOutlineX,HiOutlineChevronDown} from 'react-icons/hi'
 import { NavLink, useNavigation } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
-import {BiSolidHomeSmile} from 'react-icons/bi'
+import { BiSolidHomeSmile } from "react-icons/bi";
+
 export const SidebarWithLogo = () => {
-  const {user ,logOut} = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
   const [open, setOpen] = useState(0);
   const [openAlert, setOpenAlert] = useState(true);
-  const navigate = useNavigation()
+  const navigate = useNavigation();
 
-  const handleLogOut = ()=>{
-    if(logOut){
-      logOut()
-      navigate('/')
+  const handleLogOut = () => {
+    if (logOut) {
+      logOut();
+      navigate("/");
     }
-  }
+  };
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
@@ -226,17 +227,17 @@ export const SidebarWithLogo = () => {
   return (
     <>
       {/* for mobile device  */}
-      <Navbar className='sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 md:hidden'>
+      <Navbar className=" md:hidden">
         <IconButton
-          variant='text'
-          className='ml-auto h-6 w-6 text-inherit lg:hidden'
+          variant="text"
+          className="ml-auto h-6 w-6 text-inherit lg:hidden"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
         >
           {openNav ? (
-            <HiOutlineX className='text-3xl text-blue-gray-800'></HiOutlineX>
+            <HiOutlineX className="text-3xl text-blue-gray-800"></HiOutlineX>
           ) : (
-            <HiOutlineMenu className='text-3xl  text-blue-gray-800'></HiOutlineMenu>
+            <HiOutlineMenu className="text-3xl  text-blue-gray-800"></HiOutlineMenu>
           )}
         </IconButton>
         <MobileNav open={openNav}>{navList}</MobileNav>
@@ -244,42 +245,42 @@ export const SidebarWithLogo = () => {
 
       {/* for desktop device  */}
 
-      <Card className='hidden md:block  h-screen w-full max-w-[20rem] p-4 shadow-md shadow-blue-gray-900/5'>
-        <div className='mb-2 flex items-center gap-4 p-4'>
+      <Card className="hidden md:block  h-screen w-full max-w-[20rem] p-4 shadow-md shadow-blue-gray-900/5">
+        <div className="mb-2 flex items-center gap-4 p-4">
           <img
             src={user?.photoURL}
-            alt='brand'
-            className='rounded-full h-10 w-10'
+            alt="brand"
+            className="rounded-full h-10 w-10"
           />
-          <Typography variant='h5' color='blue-gray'>
+          <Typography variant="h5" color="blue-gray">
             {user?.displayName}
           </Typography>
         </div>
         {navList}
         <Alert
           open={openAlert}
-          className='mt-auto'
+          className="mt-auto"
           onClose={() => setOpenAlert(false)}
         >
-          <CubeTransparentIcon className='mb-4 h-12 w-12' />
-          <Typography variant='h6' className='mb-1'>
+          <CubeTransparentIcon className="mb-4 h-12 w-12" />
+          <Typography variant="h6" className="mb-1">
             Upgrade to PRO
           </Typography>
-          <Typography variant='small' className='font-normal opacity-80'>
+          <Typography variant="small" className="font-normal opacity-80">
             Upgrade to PRO Member and get even more Conceptual Session, more
             Support, advanced features and premium.
           </Typography>
-          <div className='mt-4 flex gap-3'>
+          <div className="mt-4 flex gap-3">
             <Typography
-              as='a'
-              href='#'
-              variant='small'
-              className='font-medium opacity-80'
+              as="a"
+              href="#"
+              variant="small"
+              className="font-medium opacity-80"
               onClick={() => setOpenAlert(false)}
             >
               Dismiss
             </Typography>
-            <Typography as='a' href='#' variant='small' className='font-medium'>
+            <Typography as="a" href="#" variant="small" className="font-medium">
               Upgrade Now
             </Typography>
           </div>

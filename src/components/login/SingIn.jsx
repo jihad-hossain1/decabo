@@ -43,64 +43,66 @@ const SingIn = () => {
   };
   return (
     <Container>
-      <h2 className="text-center text-xl mt-10">Log-In</h2>
-      <form
-        onSubmit={handleSubmits}
-        action=""
-        className="max-w-md mx-auto mt-14"
-      >
-        <div className="mb-6">
-          <Input
-            required
-            type="email"
-            name="email"
-            variant="standard"
-            label="User Email"
-          />
-        </div>
-        <div className="mb-6">
-          <Input
-            required
-            variant="standard"
-            name="password"
-            type="password"
-            label="Password"
-          />
-        </div>
-        <div className="mb-6">
-          <Button className="w-full ">Sign-In</Button>
-        </div>
-      </form>
-      <div className="mb-6 flex space-x-3 justify-center items-center">
-        <h4>ops. you have no account ?</h4>
-        <Link
-          className="text-gray-500 hover:text-blue-gray-700 hover:underline"
-          to={`/register`}
+      <div className=" ">
+        <h2 className="text-center text-xl mt-10">Log-In</h2>
+        <form
+          onSubmit={handleSubmits}
+          action=""
+          className="max-w-md mx-auto mt-14"
         >
-          create your account
-        </Link>
-      </div>
-      <div className="flex justify-center my-6">
-        <div className="flex gap-4">
-          <IconButton
-            onClick={handleGoogleSignIn}
-            className="rounded bg-[#ea4335] hover:shadow-[#ea4335]/20 focus:shadow-[#ea4335]/20 active:shadow-[#ea4335]/10"
+          <div className="mb-6">
+            <Input
+              required
+              type="email"
+              name="email"
+              variant="standard"
+              label="User Email"
+            />
+          </div>
+          <div className="mb-6">
+            <Input
+              required
+              variant="standard"
+              name="password"
+              type="password"
+              label="Password"
+            />
+          </div>
+          <div className="mb-6">
+            <Button className="w-full ">Sign-In</Button>
+          </div>
+        </form>
+        <div className="mb-6 flex space-x-3 justify-center items-center">
+          <h4>ops. you have no account ?</h4>
+          <Link
+            className="text-gray-500 hover:text-blue-gray-700 hover:underline"
+            to={`/register`}
           >
-            <LiaGofore className="text-3xl" />
-          </IconButton>
-          <IconButton className="rounded bg-[#5168f0] hover:shadow-[#4735ea]/20 focus:shadow-[#4735ea]/20 active:shadow-[#4735ea]/10">
-            <LiaFacebook className="text-3xl" />
-          </IconButton>
-
-          <IconButton className="rounded bg-[#333333] hover:shadow-[#333333]/20 focus:shadow-[#333333]/20 active:shadow-[#333333]/10">
-            <LiaGithub className="text-3xl" />
-          </IconButton>
+            create your account
+          </Link>
         </div>
-      </div>
-      <div className="mb-6 flex flex-col justify-center items-center">
-        <Link to={`/`}>
-          <Button className=" ">go back home</Button>
-        </Link>
+        <div className="flex justify-center my-6">
+          <div className="flex gap-4">
+            <IconButton
+              onClick={handleGoogleSignIn}
+              className="rounded bg-[#ea4335] hover:shadow-[#ea4335]/20 focus:shadow-[#ea4335]/20 active:shadow-[#ea4335]/10"
+            >
+              <LiaGofore className="text-3xl" />
+            </IconButton>
+            <IconButton className="rounded bg-[#5168f0] hover:shadow-[#4735ea]/20 focus:shadow-[#4735ea]/20 active:shadow-[#4735ea]/10">
+              <LiaFacebook className="text-3xl" />
+            </IconButton>
+
+            <IconButton className="rounded bg-[#333333] hover:shadow-[#333333]/20 focus:shadow-[#333333]/20 active:shadow-[#333333]/10">
+              <LiaGithub className="text-3xl" />
+            </IconButton>
+          </div>
+        </div>
+        <div className="mb-6 flex flex-col justify-center items-center">
+          <Link to={`/`}>
+            <Button className=" ">go back home</Button>
+          </Link>
+        </div>
       </div>
     </Container>
   );

@@ -8,7 +8,7 @@ const TrustByCompany = () => {
           Trusted by over 3254 companies and millions of learners around the
           world
         </h4>
-        <div className="flex justify-between mt-10 ">
+        <div className="grid grid-cols-3 gap-4 md:flex md:justify-between mt-10 ">
           {[
             { img: "https://i.ibb.co/G5yydm3/att.png" },
             { img: "https://i.ibb.co/xmTP2Jn/cisco-1.png" },

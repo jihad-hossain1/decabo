@@ -3,7 +3,7 @@ import heroImg from "../../assets/hero/download.jpg";
 
 const Hero2 = () => {
   return (
-    <div className="max-w-7xl mx-auto mb-10">
+    <div className=" max-w-7xl mx-auto mb-10">
       <div
         className="bg- w-full  bg-cover bg-inherit flex flex-col justify-start items-start min-h-[400px] shadow drop-shadow-sm"
         style={{ backgroundImage: `url(${heroImg})` }}

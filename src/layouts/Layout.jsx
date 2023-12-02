@@ -5,11 +5,15 @@ import {
   Typography,
   IconButton,
   Button,
+  Drawer,
+  List,
+  ListItem,
+  ListItemPrefix,
+  ListItemSuffix,
+  Chip,
 } from "@material-tailwind/react";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
-
-// import {MdOutlineLanguage} from 'react-icons/md'
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ProfileMenu } from "../components/profileMenu/Profilemenu";
 import Search from "../components/search/Search";
 import { AuthContext } from "../provider/AuthProvider";
@@ -18,11 +22,13 @@ import { DialogWithLanguage } from "../components/language/Language";
 import Notification from "../components/notification/Notification";
 import Favorites from "../components/favorite/Favorite";
 import HeaderCarts from "../pages/dashboard/carts/headerCarts/HeaderCarts";
+import MNav from "../components/MNav/MNav";
+// import { MobileNav } from "@material-tailwind/react";
+import { GiHamburgerMenu, GiTireIronCross } from "react-icons/gi";
 
 export const StickyNavbar = () => {
   const { user } = useContext(AuthContext);
   const [openNav, setOpenNav] = useState(false);
-  // search state & function
   const [coursesSearch, setCoursesSearch] = useState([]);
   const [searchText, setSearchText] = useState("");
   const handleSearch = async () => {
@@ -38,10 +44,12 @@ export const StickyNavbar = () => {
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
-
+  const [isActive, setIsActive] = useState(false);
+  const openDrawer = () => setIsActive(true);
+  const closeDrawer = () => setIsActive(false);
   return (
     <>
-      <Navbar className=" sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
+      <Navbar className="hidden md:block sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
         <>
           <div className=" max-w-screen-2xl mx-auto flex items-center justify-between space-x-2 text-blue-gray-900">
             <div className="flex space-x-2 items-center">
@@ -138,15 +146,42 @@ export const StickyNavbar = () => {
               </div>
             </div>
           </div>
-          <MobileNav open={openNav}>
-            {"navlist"}
-            <ul>
-              <li>comming</li>
-            </ul>
-            {/* <ProfileMenu></ProfileMenu> */}
-          </MobileNav>
         </>
       </Navbar>
+      <div className="md:hidden bg-blue-gray-50 pl-2 pt-2">
+        <button onClick={openDrawer}>
+          <GiHamburgerMenu size={26} />
+        </button>
+        <Drawer open={isActive} onClose={closeDrawer}>
+          <div className="mb-2 flex items-center justify-between p-4">
+            <Typography variant="h5" color="blue-gray">
+              Welcome To Docebo
+            </Typography>
+            <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-5 w-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </IconButton>
+          </div>
+          <List>
+            <ListItem>Dashboard</ListItem>
+          </List>
+          <Button className="mt-3 ml-5" size="sm">
+            Documentation
+          </Button>
+        </Drawer>
+      </div>
     </>
   );
 };

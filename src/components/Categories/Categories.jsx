@@ -53,8 +53,7 @@ const items = [
 const Categories = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const onClick = (e) => {
-    // console.log(e)
-    setOpenMenu(false)
+    setOpenMenu(false);
   };
   const handleMenu = () => {
     setOpenMenu(!openMenu);
@@ -65,10 +64,10 @@ const Categories = () => {
       {openMenu && (
         <div className="flex justify-center ">
           <Menu
-            className="fixed mt-3 border border-blue-gray-100/70 shadow drop-shadow-2xl rounded-lg"
+            className="sticky md:fixed mt-3 border border-blue-gray-100/70 shadow drop-shadow-2xl rounded-lg"
             onClick={onClick}
             style={{
-                width: 256, 
+              width: 256,
             }}
             mode="vertical"
             items={items}
