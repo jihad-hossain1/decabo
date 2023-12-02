@@ -7,6 +7,7 @@ import {
   Drawer,
   List,
   ListItem,
+  Dialog,
 } from "@material-tailwind/react";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import { Link } from "react-router-dom";
@@ -41,6 +42,7 @@ export const StickyNavbar = () => {
   const [isActive, setIsActive] = useState(false);
   const openDrawer = () => setIsActive(true);
   const closeDrawer = () => setIsActive(false);
+  const [isInputOpen, setIsInputOpen] = useState(false);
   return (
     <>
       <Navbar className="hidden md:block sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
@@ -151,6 +153,15 @@ export const StickyNavbar = () => {
           Docebo
         </Typography>
         <div className="flex items-center">
+          <div className="">
+            <Search
+              handleSearch={handleSearch}
+              setSearchText={setSearchText}
+              searchText={searchText}
+              setCoursesSearch={setCoursesSearch}
+              coursesSearch={coursesSearch}
+            />
+          </div>
           {user ? (
             <div className="flex items-center gap-2">
               <div className="">
@@ -252,5 +263,7 @@ export const StickyNavbar = () => {
     </>
   );
 };
+
+
 
 

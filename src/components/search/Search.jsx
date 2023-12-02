@@ -1,35 +1,37 @@
 import { Avatar, Input } from "@material-tailwind/react";
 import React, {  useState } from "react";
 import { Link } from "react-router-dom";
+import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 
 const Search = ({
   setSearchText,
   coursesSearch,
   handleSearch,
+  isInputOpen,
+  setIsInputOpen,
 }) => {
-    // const wrapperRef = useRef(null);
+  // const wrapperRef = useRef(null);
   const [searchBarOpen, setsearchBarOpen] = useState(false);
 
-
   return (
-    <div className="md:w-[700px]">
+    <div className="hidden md:block md:w-[700px]">
       {/* search section  */}
-      <div className=" p-2 text-center ">
+
+      <div className={` p-2 text-center `}>
         <Input
           onChange={(e) => setSearchText(e.target.value)}
-            color="teal"
-            
+          color="teal"
           label="Search Your Queary"
           type="search"
           autoFocus
-          className="w-full"
+          className={`w-full`}
           onKeyDown={handleSearch}
           onClick={() => setsearchBarOpen(!searchBarOpen)}
         />
       </div>
       {searchBarOpen && (
-        <div  className=" relative flex justify-center">
-          <div  className="fixed bg-blue-gray-50 border-b border-l border-r border-blue-gray-100/80 grid grid-cols-1 shadow drop-shadow-2xl shadow-teal-200/50 gap-3 text-center rounded-md px-6 py-2 min-h-[100px] min-w-[400px]">
+        <div className=" relative flex justify-center">
+          <div className="md:fixed bg-blue-gray-50 border-b border-l border-r border-blue-gray-100 grid grid-cols-1 shadow drop-shadow-2xl shadow-teal-200/50 gap-3 text-center rounded-md px-6 py-2 md:min-h-[100px] md:min-w-[400px]">
             {coursesSearch?.map((item) => (
               <Link
                 to={`/course/${item?._id}`}
@@ -39,9 +41,17 @@ const Search = ({
                 <div>
                   <Avatar src={item?.img} alt="avatar" variant="rounded" />
                 </div>
-                <button onClick={() => setsearchBarOpen(false)} className="flex flex-col">
+                <button
+                  onClick={() => setsearchBarOpen(false)}
+                  className="flex flex-col"
+                >
                   <span>{item?.title}</span>
-                  <span className="text-xs text-gray-700"><span className="font-semibold text-gray-800">Instructor:</span> {item?.instructorName}</span>
+                  <span className="text-xs text-gray-700">
+                    <span className="font-semibold text-gray-800">
+                      Instructor:
+                    </span>{" "}
+                    {item?.instructorName}
+                  </span>
                 </button>
               </Link>
             )) || <div>No item match</div>}
