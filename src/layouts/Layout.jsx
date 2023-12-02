@@ -1,16 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
   Navbar,
-  MobileNav,
   Typography,
   IconButton,
   Button,
   Drawer,
   List,
   ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Chip,
 } from "@material-tailwind/react";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import { Link } from "react-router-dom";
@@ -22,9 +18,7 @@ import { DialogWithLanguage } from "../components/language/Language";
 import Notification from "../components/notification/Notification";
 import Favorites from "../components/favorite/Favorite";
 import HeaderCarts from "../pages/dashboard/carts/headerCarts/HeaderCarts";
-import MNav from "../components/MNav/MNav";
-// import { MobileNav } from "@material-tailwind/react";
-import { GiHamburgerMenu, GiTireIronCross } from "react-icons/gi";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 export const StickyNavbar = () => {
   const { user } = useContext(AuthContext);
@@ -148,15 +142,62 @@ export const StickyNavbar = () => {
           </div>
         </>
       </Navbar>
-      <div className="md:hidden bg-blue-gray-50 pl-2 pt-2">
-        <button onClick={openDrawer}>
-          <GiHamburgerMenu size={26} />
-        </button>
-        <Drawer open={isActive} onClose={closeDrawer}>
+      <div className="py-3 md:hidden bg-blue-gray-50 pl-2 pt-2 flex justify-between items-center">
+        <Typography
+          as={Link}
+          href={`/`}
+          className="mr-4 cursor-pointer py-1.5 font-bold text-xl text-teal-700"
+        >
+          Docebo
+        </Typography>
+        <div className="flex items-center">
+          {user ? (
+            <div className="flex items-center gap-2">
+              <div className="">
+                <Favorites />
+              </div>
+              <Notification />
+              <div className="">
+                <div className="">
+                  <ProfileMenu></ProfileMenu>
+                </div>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+          <button onClick={openDrawer} className="mr-3">
+            <GiHamburgerMenu size={26} />
+          </button>
+        </div>
+        <Drawer placement="right" open={isActive} onClose={closeDrawer}>
           <div className="mb-2 flex items-center justify-between p-4">
-            <Typography variant="h5" color="blue-gray">
-              Welcome To Docebo
-            </Typography>
+            {user ? (
+              <>
+                <div>{user?.displayName}</div>
+              </>
+            ) : (
+              <div className="flex items-center space-x-3 text-sm">
+                <Link onClick={() => setIsActive(!isActive)} to={"/signin"}>
+                  <Button
+                    color="blue-gray"
+                    variant="outlined"
+                    className="rounded-sm text-gray-900 py-2 hover:bg-gray-200  px-3 flex justify-center "
+                  >
+                    login
+                  </Button>
+                </Link>
+                <Link onClick={() => setIsActive(!isActive)} to={"/register"}>
+                  <Button
+                    color="blue-gray"
+                    variant="outlined"
+                    className="rounded-sm text-gray-50 py-2 hover:bg-gray-50 hover:text-blue-gray-900 bg-blue-gray-900 px-3 flex justify-center "
+                  >
+                    Signup
+                  </Button>
+                </Link>
+              </div>
+            )}
             <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -175,11 +216,37 @@ export const StickyNavbar = () => {
             </IconButton>
           </div>
           <List>
-            <ListItem>Dashboard</ListItem>
+            <ListItem>
+              <Link onClick={() => setIsActive(!isActive)} to={`/courses`}>
+                All Categories
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link onClick={() => setIsActive(!isActive)} to={`/courses`}>
+                On Bussiness
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link onClick={() => setIsActive(!isActive)} to={`/about`}>
+                About
+              </Link>
+            </ListItem>
           </List>
-          <Button className="mt-3 ml-5" size="sm">
-            Documentation
-          </Button>
+          <div className="flex justify-end flex-col ml-7 items-end fixed bottom-6 ">
+            <div className="flex gap-5 items-center">
+              <ListItem>
+                <Link onClick={() => setIsActive(!isActive)} to={`/courses`}>
+                  Business
+                </Link>
+              </ListItem>
+              <ListItem>
+                <Link onClick={() => setIsActive(!isActive)} to={`/courses`}>
+                  Teach
+                </Link>
+              </ListItem>
+              <DialogWithLanguage />
+            </div>
+          </div>
         </Drawer>
       </div>
     </>
