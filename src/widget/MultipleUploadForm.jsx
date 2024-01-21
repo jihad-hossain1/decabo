@@ -1,10 +1,12 @@
 // import { image } from "@cloudinary/url-gen/qualifiers/source";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { uploadMultiple } from "./UploadMultiple";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import copy from "copy-to-clipboard";
 
 const MultipleUploadForm = () => {
+  const textRef = useRef();
   const [multiImage, setMultiImage] = useState([]);
   const [multiLink, setmultiLink] = useState([]);
   const [loading, setloading] = useState(false);
@@ -13,7 +15,7 @@ const MultipleUploadForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(multiImage);
+
     try {
       setloading(true);
       let arr = [];
@@ -30,6 +32,21 @@ const MultipleUploadForm = () => {
       console.log(multiLink);
     } catch (error) {
       console.log(error);
+    }
+  };
+  // console.log(multiImage);
+
+  useEffect(() => {
+    if (multiImage) {
+      console.log(multiImage);
+    }
+  }, []);
+
+  const copyToClipboard = () => {
+    let copyText = textRef.current.value;
+    let isCopy = copy(copyText);
+    if (isCopy) {
+      toast.success("Copied to Clipboard");
     }
   };
   return (
@@ -60,6 +77,7 @@ const MultipleUploadForm = () => {
         </div>
       </form>
       {loading && <h4>uploading.....</h4>}
+
       <div className="mt-8 ml-10">
         <button
           onClick={() => settoggleSeeGallary(!toggleSeeGallary)}
@@ -68,8 +86,29 @@ const MultipleUploadForm = () => {
           show uploaded items
         </button>
       </div>
+
       {toggleSeeGallary && (
-        <div className="grid md:grid-cols-4 ">
+        <>
+          {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}
+          <div className="flex flex-col gap-1 my-4" ref={textRef}>
+            {multiLink?.map((item, i) => (
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => copyToClipboard()}
+                  className="text-sm text-green-500 border px-2 rounded "
+                >
+                  copy link{" "}
+                </button>
+                <input
+                  disabled
+                  key={i}
+                  ref={textRef}
+                  className=""
+                  defaultValue={item?.url}
+                />
+              </div>
+            ))}
+          </div>
           {multiLink?.map((item) => (
             <div
               key={item?.url}
@@ -82,8 +121,9 @@ const MultipleUploadForm = () => {
               />
             </div>
           ))}
-        </div>
+        </>
       )}
+
       {toggleSeeGallary?.length == 0 && (
         <h4 className="text-blue-gray-900 mt-5">please upload some item</h4>
       )}

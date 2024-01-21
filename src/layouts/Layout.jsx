@@ -168,10 +168,8 @@ export const StickyNavbar = () => {
                 <Favorites />
               </div>
               <Notification />
-              <div className="">
-                <div className="">
-                  <ProfileMenu></ProfileMenu>
-                </div>
+              <div>
+                <ProfileMenu />
               </div>
             </div>
           ) : (
